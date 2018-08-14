@@ -1,0 +1,17 @@
+<div ng-app ="myApp">
+  <ul class="nav nav-pills">
+    <button type="button" name="button" (click)="addItem()">button</button>
+    <li><a href (click)=" addItem()">tab1</a></li>
+    <li><a href (click)="addItem()" onclick="return false">tab2</a></li>
+    <p ngFor="let tab of tabs">{{tab}}</p>
+  </ul>
+
+  <div class="display">
+     <i class="fa fa-home"></i>
+  </div>
+</div>
+
+<div>
+  <input type=text [(ngModel)]="name">
+  <p>{{name}}</p>
+</div>
