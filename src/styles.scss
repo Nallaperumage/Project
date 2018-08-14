@@ -1,3 +1,61 @@
-@import "~bootswatch/dist/cyborg/_variables.scss";
 @import "~bootstrap/scss/bootstrap.scss";
-@import "~bootswatch/dist/cyborg/_bootswatch.scss";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  font-weight: 400;
+  letter-spacing: -.022em;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 1em;
+  float: right;
+}
+.viewport-emitter {
+  height: 0px;
+  visibility: hidden;
+}
+
+.viewport-emitter::before {
+  content: "large";
+}
+
+@media only screen and (max-width: 1044px) {
+  .viewport-emitter::before {
+    content: "medium";
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .viewport-emitter::before {
+    content: "small";
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  .viewport-emitter::before {
+    content: "xsmall";
+  }
+}
+
+
+
+
+
+

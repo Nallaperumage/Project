@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
@@ -8,19 +9,19 @@ import { Component, OnInit } from '@angular/core';
 )
 
 export class HomeComponent implements OnInit {
-
-  msg ="";
-  tab:number=0;
-  name="";
-
-  constructor() { }
+  
+  constructor() {}
 
   ngOnInit() {
-  }
-
-  addItem(){
-    this.tab = this.tab+1;
-    this.msg ="clicked : "+ this.tab;
+    window.onscroll = function() {
+      let y = window.pageYOffset;
+      if (y>50) {
+        document.getElementById("caro-ctrl").classList.add("caro-remover");
+      } 
+      else {
+        document.getElementById("caro-ctrl").classList.remove("caro-remover");
+      }
+    }
   }
 
 }

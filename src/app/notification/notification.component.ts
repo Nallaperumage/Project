@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationComponent implements OnInit {
 
+  msg ="";
+  tab:number=0;
+  name="";
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addItem(){
+    this.tab = this.tab+1;
+    this.msg ="clicked : "+ this.tab;
   }
 
 }

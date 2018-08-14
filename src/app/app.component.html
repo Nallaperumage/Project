@@ -1,55 +1,129 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <button class="navbar-toggler ml-left" type="button" (click)="toggleMenu()" aria-controls="navbarNavDropdown" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">SLGSP</a>
-  
-  <div class="collapse navbar-collapse" id="navbarNavDropdown" [ngbCollapse]="isCollapsed">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Services</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Maps</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Forum</a>
-      </li>
-      <li class="nav-item dropdown" ngbDropdown>
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" ngbDropdownToggle>
-          About
+<div class="header" [class.ham-clicked]="wasClicked">
+  <div class="container">
+    <div class="upper-row">
+      <h1 class="logo" *ngIf="mobileQuery.matches">
+        SLGSP
+      </h1>
+      <div class="menu-toggle" [class.mobile-match]="mobileQuery.matches" (click)="toggleMenu()">
+        <div class="hamberger" [class.ham-clicked]="wasClicked"></div>
+      </div>
+      <div [class.mobile-match]="mobileQuery.matches" class="user-info" [class.ham-clicked]="wasClicked" [class.user-clicked]="userClicked">
+        <a class="" [class.user-clicked]="userClicked">
+          <span class="" [class.user-clicked]="userClicked">
+            <i class="fa fa-address-book-o" [class.user-clicked]="userClicked" (click)="toggleUser()"></i>
+          </span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" ngbDropdownMenu>
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+
+
+
+    <ul class="my-navi" [class.ham-clicked]="wasClicked" [class.about-clicked]="aboutClicked">
+      <li class="navi-item logo item-logo" *ngIf="!transition.matches">
+        <a class="item-link" routerLink="\">SLGSP</a>
+      </li>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="home()">Home</a>
+      </li>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="service()">Services</a>
+      </li>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="pricing()">Pricing</a>
+      </li>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="maps()">Maps</a>
+      </li>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="forum()">Forum</a>
+      </li>
+      <li class="navi-item about" [class.ham-clicked]="wasClicked">
+        <a class="about item-link" (click)="toggleAbout()">
+          <span class="">About</span>
+        </a>
+      </li>
+      <li class="navi-item" [class.user-clicked]="userClicked">
+        <a class="user-info item-link list-user" [class.user-clicked]="userClicked">
+          <span class="" [class.user-clicked]="userClicked">
+            <i class="fa fa-address-book-o" (click)="toggleUser()" [class.user-clicked]="userClicked"></i>
+
+          </span>
+        </a>
+        <div class="user-pointer" *ngIf="!largeQuery.matches" [class.large-query]="!largeQuery.matches" [class.user-clicked]="userClicked">
+          <span class="my-tip" [class.user-clicked]="userClicked"></span>
         </div>
       </li>
     </ul>
-    
-  </div>
-  <div class="dashboard ml-right">
-    <div class="afterLogged">
-        <button class="fa fa-bell-o btn" type="button" (click)="notification()">
-        </button>
-        <button class="fa fa-user btn" type="button" (click)="setting()">
-        </button>
-    </div>
-    
-    <button class="fa fa-cogs btn" type="button" (click)="login()">
-    </button>
-    
-  </div>
-  
-  
-  
-</nav>
+    <aside class="user-info-navi" [class.user-clicked]="userClicked" [class.user-not-clicked]="!userClicked">
+      <div class="user-pointer" *ngIf="largeQuery.matches" [class.small-query]="largeQuery.matches" [class.user-clicked]="userClicked">
+        <span class="my-tip" [class.user-clicked]="userClicked"></span>
+      </div>
+      <div class="user-tool-area" [class.user-clicked]="userClicked">
+        <ul class="site-navi" [class.user-clicked]="userClicked">
+          <li class="site-item" [class.user-clicked]="userClicked">
+            <a (click)="tanh()">
+              <span>
+                <i class="fa fa-usd site-item-icon"></i>
+              </span>
+              Payment</a>
+          </li>
+          <li class="site-item" [class.user-clicked]="userClicked">
+            <a >
+              <span>
+                <i class="fa fa-bell-o site-item-icon"></i>
+              </span>
+              Notifications</a>
+          </li>
+          <li class="site-item" [class.user-clicked]="userClicked">
+            <a >
+              <span>
+                <i class="fa fa-lock site-item-icon"></i>
+              </span>
+              Privacy options</a>
+          </li>
+          <li class="site-item" [class.user-clicked]="userClicked">
+            <a >
+              <span>
+                <i class="fa fa-cog site-item-icon"></i>
+              </span>
+              Account Settings</a>
+          </li>
+          <li class="site-item" [class.user-clicked]="userClicked">
+            <a (click)="login()">
+              <span>
+                <i class="fa fa-sign-in site-item-icon"></i>
+              </span>
+              <span>Login</span>
+            </a>
+            <a *ngIf="logged">
+              <span>
+                <img class="site-item-icon" src="" />
+              </span>
+              <span>
+                Log Out
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-<router-outlet></router-outlet>
+    </aside>
+
+  </div>
+</div>
+
+
+
+<div>
+  <div class="about-div" [class.about-clicked]="aboutClicked" *ngIf="aboutClicked">
+    <a class="" (click)="login()">Action</a>
+    <a class="" (click)="login()">Another action</a>
+    <a class="" (click)="login()">Something else here</a>
+  </div>
+</div>
+
+
+<div class="outlet-area" (click)="removeIt()">
+  <router-outlet></router-outlet>
+</div>
+
