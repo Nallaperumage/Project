@@ -421,6 +421,10 @@ body {
   transition: 0.2s;
 }
 
+.site-navi li:first-child{
+  text-align: center;
+}
+
 .user-pointer {
   content: '';
   position: absolute;
@@ -465,7 +469,7 @@ body {
   border-bottom: 1px solid silver;
   height: $listHeight;
   padding-top: 20px;
-  top: 20px;
+  top: 30px;
   width: 100%;
   opacity: 0;
   pointer-events: none;
@@ -576,4 +580,15 @@ body {
   .user-pointer {
     right: 1.25em;
   }
+}
+
+.profile-pic{
+  position: absolute;
+  top: -10px;
+  width: 70px;
+  height: 50px;
+  left: 35%;
+  border-radius: 50%;
+  font-size: 3em;
+  text-align: center;
 }

@@ -1,3 +1,123 @@
-.user-body{
-    padding-top: 56px;
+.user-body {
+  padding-top: 0px;
+}
+
+.user-is-mobile {
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+.user-toolbar {
+    display: none;
+    border: none;
+}
+
+.panelIco{
+  font-size: 1.2em;
+  margin: 0 10px 0 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .user-toolbar {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    font-size: 50px;
+    left: -22px;
+    height: 90%;
+    transition: 0.25s;
+  }
+  .hide-arrow {
+    transform: translateX(-200%);
+    transition: 0.25s;
+  }  
+  .content-area.padding-left {
+    left: 3em;
+  }
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
+
+.content-area {
+  padding: 1em 0 0 1em;
+  height: 500px;
+}
+
+#snav{
+  height: 500px;
+}
+
+::ng-deep .mat-drawer {
+  overflow-y: auto;
+}
+
+h1.user-app-name {
+  margin-left: 8px;
+}
+
+.mat-sidenav {
+  background: linear-gradient(135deg, #8f75da 0, #727cf5 60%);
+  width: 15em;
+}
+
+.user-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+  top: 44px;
+}
+
+.user-is-mobile .user-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+.mat-drawer {
+  top: 4px;
+
+}
+
+.mat-expansion-panel {
+  background: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding-bottom:0;
+}
+
+::ng-deep .mat-expansion-panel-body{
+  padding: 0 0 0 1.5em !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .mat-expansion-indicator {
+  padding-bottom: 0.5em;
+}
+.mat-expansion-panel-header-title:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.sub-title-list{
+  list-style: none;
+}
+
+.sub-title-item{
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0 0 1em 1em;
+}
+
+.sub-title-item:hover{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mat-icon-button{
+  outline-color: transparent;
 }
