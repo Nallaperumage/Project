@@ -3,7 +3,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +16,7 @@ import { MaterialModule } from './material/material.module';
 import { DatabaseService } from './services/database.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { HeaderService } from './services/header.service';
 
 
 import { AppComponent } from './app.component';
@@ -31,6 +32,9 @@ import { ServiceComponent } from './service/service.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { MapsComponent } from './maps/maps.component';
 import { ForumComponent } from './forum/forum.component';
+import { PersonalDataComponent } from './user/personal-data/personal-data.component';
+import { CreditCardsComponent } from './user/credit-cards/credit-cards.component';
+import { ActivitiesComponent } from './user/activities/activities.component';
 
 
 
@@ -48,7 +52,10 @@ import { ForumComponent } from './forum/forum.component';
     ServiceComponent,
     PricingComponent,
     MapsComponent,
-    ForumComponent
+    ForumComponent,
+    PersonalDataComponent,
+    CreditCardsComponent,
+    ActivitiesComponent
   ],
   imports: [
     AppRoutingModule,
@@ -62,7 +69,7 @@ import { ForumComponent } from './forum/forum.component';
     MaterialModule,
     NgbModule.forRoot()
   ],
-  providers: [ DatabaseService, AuthenticationService, AuthGuardService ],
+  providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

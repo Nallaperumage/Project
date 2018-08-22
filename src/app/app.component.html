@@ -59,13 +59,21 @@
         <span class="my-tip" [class.user-clicked]="userClicked"></span>
       </div>
       <div class="user-tool-area" [class.user-clicked]="userClicked">
-        <ul class="site-navi" [class.user-clicked]="userClicked">
+        <ul *ngIf="userLogged" class="site-navi" [class.user-clicked]="userClicked">
           <li class="site-item" [class.user-clicked]="userClicked">
             <a (click)="tanh()">
-              
-                <i class="fa fa-user-circle profile-pic"></i>
-              
+              <i class="fa fa-user-circle profile-pic"></i>
             </a>
+            <a class="user-name">
+                {{details.userName}}
+            </a>
+          </li>
+          <li class="site-item" [class.user-clicked]="userClicked">
+              <a (click)="user()">
+                  <span>
+                    <i class="fa fa-envira site-item-icon"></i>
+                  </span>
+                  Project</a>
           </li>
           <li class="site-item" [class.user-clicked]="userClicked">
             <a >
@@ -77,33 +85,39 @@
           <li class="site-item" [class.user-clicked]="userClicked">
             <a >
               <span>
-                <i class="fa fa-lock site-item-icon"></i>
-              </span>
-              Privacy options</a>
-          </li>
-          <li class="site-item" [class.user-clicked]="userClicked">
-            <a >
-              <span>
                 <i class="fa fa-cog site-item-icon"></i>
               </span>
               Account Settings</a>
           </li>
           <li class="site-item" [class.user-clicked]="userClicked">
-            <a (click)="login()">
+            
+            <a (click)="logOut()">
               <span>
-                <i class="fa fa-sign-in site-item-icon"></i>
-              </span>
-              <span>Login</span>
-            </a>
-            <a *ngIf="logged">
-              <span>
-                <img class="site-item-icon" src="" />
+                <img class="fa fa-sign-out site-item-icon" src="" />
               </span>
               <span>
                 Log Out
               </span>
             </a>
           </li>
+        </ul>
+        <ul  *ngIf="!userLogged" class="site-navi user-not-logged" [class.user-clicked]="userClicked">
+            <li class="site-item" [class.user-clicked]="userClicked">
+                <a (click)="login()">
+                    <span>
+                      <i class="fa fa-sign-in site-item-icon"></i>
+                    </span>
+                    <span>Login</span>
+                </a>
+            </li>
+            <li class="site-item" [class.user-clicked]="userClicked">
+                <a (click)="signUp()">
+                    <span>
+                      <i class="fas fa-user-edit site-item-icon"></i>
+                    </span>
+                    <span>Register</span>
+                  </a>
+                </li>
         </ul>
       </div>
 
@@ -112,8 +126,6 @@
   </div>
 </div>
 
-
-
 <div>
   <div class="about-div" [class.about-clicked]="aboutClicked" *ngIf="aboutClicked">
     <a class="" (click)="login()">Action</a>
@@ -121,7 +133,6 @@
     <a class="" (click)="login()">Something else here</a>
   </div>
 </div>
-
 
 <div class="outlet-area" (click)="removeIt()">
   <router-outlet></router-outlet>

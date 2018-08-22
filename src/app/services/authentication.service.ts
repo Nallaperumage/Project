@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators/map';
+import { map, catchError, tap } from 'rxjs/operators';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { Router } from '@angular/router';
 import { RegisterUser } from '../user/user.model'; 
 
@@ -73,7 +75,7 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'signUp'|'user/profile', user?: LoginUser|RegisterUser): Observable<any> {
+  private request(method: 'post'|'get', type: 'login'|'signUp'|'user/personal-data', user?: LoginUser|RegisterUser): Observable<any> {
     let base;
   
     if (method === 'post') {
@@ -99,11 +101,15 @@ export class AuthenticationService {
   }
   
   public login(user: LoginUser): Observable<any> {
-    return this.request('post', 'login', user);
+    return this.request('post', 'login', user).pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler( error: HttpErrorResponse){
+    return Observable.throw( error.error.message || "server Error" );
   }
   
   public profile(): Observable<any> {
-    return this.request('get', 'user/profile');
+    return this.request('get', 'user/personal-data');
   }
 
 }

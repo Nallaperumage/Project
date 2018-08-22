@@ -15,3 +15,12 @@
 .ngb{
   padding-top:60px;
 }
+
+.form-links > a{
+  cursor: pointer;
+  color: cyan;
+}
+
+.form-links > a:hover{
+ text-decoration: underline;
+}

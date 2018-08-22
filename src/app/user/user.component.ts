@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService, UserDetails } from '../services/authentication.service';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +13,8 @@ export class UserComponent implements OnInit {
 
   panelOpenState: boolean = false;
   isClicked = false;
+  isPClicked = false;
+  details: UserDetails;
 
   mobileQuery: MediaQueryList;
   largeQuery: MediaQueryList;
@@ -26,10 +28,16 @@ export class UserComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
+  navLinks = [
+    { path: 'personal-data', label: 'Personal Data' },
+    { path: 'credit-cards', label: 'Credit Cards' },
+    { path: 'activities', label: 'Activilies' }
+  ]
+
   
   constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) { 
     this.mobileQuery = media.matchMedia('(max-width: 767px)');
-    this.largeQuery = media.matchMedia('(min-width: 767px)');
+    this.largeQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.largeQuery.addListener(this._mobileQueryListener);
@@ -38,10 +46,23 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit() {
+    this.auth.profile().subscribe(user => {
+      this.details = user;
+    }, (err) => {
+      console.error(err);
+    });
   }
 
   hideArrow(){
     this.isClicked = !this.isClicked;
   }
-  
+
+  leftClick(){
+    document.getElementById('my-mat-nav').scrollLeft -= 200;
+  }
+
+  rightClick(){
+    let y = document.getElementById('my-mat-nav').scrollLeft +=200;
+
+  }
 }

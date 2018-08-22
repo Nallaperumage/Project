@@ -11,8 +11,12 @@ import { MapsComponent } from './maps/maps.component';
 import { ForumComponent } from './forum/forum.component';
 import { UserComponent } from './user/user.component';
   import { UserPageComponent } from './user/user-page/user-page.component';
+  import { PersonalDataComponent } from './user/personal-data/personal-data.component';
+  import { CreditCardsComponent } from './user/credit-cards/credit-cards.component';
+  import { ActivitiesComponent } from './user/activities/activities.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { EditorComponent } from './editor/editor.component';
   
 
 
@@ -43,7 +47,22 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserPageComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'personal-data',
+        component: PersonalDataComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'credit-cards',
+        component: CreditCardsComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'activities',
+        component: ActivitiesComponent,
+        canActivate: [AuthGuardService]
       } 
     ]
   },
@@ -76,7 +95,12 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
-  }
+  },
+
+  {
+    path: 'editor',
+    component: EditorComponent
+  },
 
 ];
 

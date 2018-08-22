@@ -61,4 +61,8 @@ export class SignupComponent implements OnInit {
     
   }
 
+  afterSubmit(){
+    this.router.navigate(['user/personal-data']);
+  }
+
 }

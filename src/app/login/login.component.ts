@@ -1,37 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { DatabaseService } from '../services/database.service';  
 import { AuthenticationService, LoginUser } from '../services/authentication.service';
-import { getHostElement } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, DoCheck {
 
   credentials: LoginUser = {
     email: '',
     password: ''
   };
+  errorMsg;
   
 
-  constructor(private auth: AuthenticationService, private router: Router, private modalService: NgbModal) {
+  constructor( private auth: AuthenticationService, private router: Router, private modalService: NgbModal) {
   }
 
   valbutton ="Save";
   closeResult: string;  
+  details: LoginUser;
+  successFlag = false;
+  tree = false;
+  wrongEmail = false;
+  wrongPassword = false;
+  loginClicked = false;
   
   
   // constructor( private DataService :DatabaseService ) { }
 
   ngOnInit() {
     document.getElementById('btnTrigger').click();
+    
   } 
+
+  ngDoCheck(){
+    // this.auth.login(this.credentials).subscribe(user => {
+    //   this.details = user;
+    //   this.successFlag = true;
+    // }, (err) => {
+    //   // let x = Observable.throw(this.errorHandler.message);
+    //   let x = err;
+    //   console.error(err);
+    // });
+  }
 
 
   open(content) {
@@ -54,13 +74,22 @@ export class LoginComponent implements OnInit {
   
 
   login() {
-    document.getElementById('btnTrigger').click();
     this.auth.login(this.credentials).subscribe( data => {
       alert(data.data);
-      this.router.navigate(['user/profile']);
+      this.router.navigate(['user/personal-data']);
     }, (err) => {
+      this.errorMsg = err;
       console.error(err);
     });
+
+    if(this.errorMsg = "Password is wrong"){
+      this.wrongPassword = true;
+    }
+    if(this.errorMsg = "User not found"){
+      this.wrongEmail = true;
+    }
+    document.getElementById('btnTrigger').click();
+    this.tree = true;
   }
 
   loginClose(){
@@ -70,6 +99,7 @@ export class LoginComponent implements OnInit {
 
 
   signUp(){
+    document.getElementById('btnTrigger').click();
     this.router.navigate(['signUp']);
   }
 

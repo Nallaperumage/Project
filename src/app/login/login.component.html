@@ -74,21 +74,26 @@
                   <input matInput class="validate" type="email" name="email" #email="ngModel" [(ngModel)]="credentials.email" required/>
                   <mat-label>Email</mat-label>
                 </mat-form-field>
+                <a *ngIf="wrongEmail && loginClicked">Wrong Email</a>
               </div>
               <div class="form-wrap">
                 <mat-form-field>
                   <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" placeholder="password"
                     required/>
                 </mat-form-field>
+                <a *ngIf="wrongPassword && loginClicked">Wrong Password!</a>
               </div>
-              <div class="form-wrap">
-                <a href (click)="recover()">Forgot your SLGSP ID or password?</a>
+              <div class="form-wrap form-links">
+                <a  (click)="recover()">Forgot your SLGSP ID or password?</a>
                 <br/>
-                <a href (click)="signUp()">Don't have an SLGSP Account? Create one now.</a>
+                <a  (click)="signUp()">Don't have an SLGSP Account? Create one now.</a>
+              </div>
+              <div *ngIf="tree">
+                {{errorMsg}}
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="loginClose()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="loginClose() && loginClicked==true" data-dismiss="modal">Close</button>
                 <button id="btnLogin" type="submit" class="btn btn-success">Log In</button>
               </div>
           </form>

@@ -7,12 +7,19 @@
             </button>
             <h1 class="user-app-name">Responsive App</h1>
           </mat-toolbar> -->
-          <button mat-icon-button class="user-toolbar" id="mytoolbar" [class.hide-arrow]="isClicked" (click)="snav.toggle() && hideArrow()">
-            <mat-icon class="fa fa-chevron-circle-right"></mat-icon>
+          <button class="user-toolbar" id="mytoolbar" [class.hide-arrow]="isClicked" (click)="snav.toggle() && hideArrow()">
+            <!-- <mat-icon class=" slide-icon fa fa-chevron-circle-right"></mat-icon> -->
+            <i class="btnIco fas fa-user-secret"></i>
+            <i class="btnIco fas fa-pen-nib"></i>
+            <i class="btnIco fas fa-clipboard-list"></i>
+            <i class="btnIco fas fa-chart-line"></i>
+            <i class="btnIco fas fa-table"></i>
+            <i class="btnIco fas fa-map-marked-alt"></i>
+            <i class="btnIco fas fa-briefcase"></i>
           </button>
       
           <mat-sidenav-container (backdropClick)="!hideArrow()" class="user-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 4 : 0">
-            <mat-sidenav mat-sidenav-fixed class="mat-sidenav-fixed CdkScrollable" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" [attr.role]="mobileQuery ? 'dialog' : 'navigation'"
+            <mat-sidenav #snav class="side-nav slimScrollDiv in" [mode]="mobileQuery.matches ? 'over' : 'side'" fixedInViewport [attr.role]="mobileQuery ? 'dialog' : 'navigation'"
               [opened]="(largeQuery.matches) || (isClicked)" fixedTopGap="48">
               <mat-nav-list>
                 <!-- <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a> -->
@@ -24,11 +31,16 @@
                         Account
                       </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <ul class="sub-title-list">
-                      <li class="sub-title-item">Personal data</li>
-                      <li class="sub-title-item">Credit cards</li>
-                      <li class="sub-title-item">Activities</li>
+                    <ul class="sub-title-list" *ngIf="mobileQuery.matches">
+                      <li routerLink="personal-data" class="sub-title-item" (click)="snav.toggle() && hideArrow()" >Personal data</li>
+                      <li routerLink="credit-cards" class="sub-title-item" (click)="snav.toggle() && hideArrow()" >Credit cards</li>
+                      <li routerLink="activities" class="sub-title-item" (click)="snav.toggle() && hideArrow()" >Activities</li>
                     </ul>
+                    <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
+                        <li routerLink="personal-data" class="sub-title-item">Personal data</li>
+                        <li routerLink="credit-cards" class="sub-title-item">Credit cards</li>
+                        <li routerLink="activities" class="sub-title-item" >Activities</li>
+                      </ul>
                   </mat-expansion-panel>
             
                   <mat-expansion-panel (opened)="panelOpenState = true"
@@ -135,9 +147,34 @@
               </mat-nav-list>
             </mat-sidenav>
       
-            <mat-sidenav-content class="content-area" [class.padding-left]="!isClicked">   
-              <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
-              <p>testing content area</p>
+            <mat-sidenav-content class="content-area" [class.padding-left]="!isClicked">  
+              <!-- <div *ngIf="isPClicked">
+                <app-user-page></app-user-page>
+              </div> -->
+              <nav id="my-mat-nav" class="outer_container" mat-tab-nav-bar>
+                  <a mat-tab-link *ngFor="let link of navLinks"
+                  [routerLink]="link.path"
+                  routerLinkActive #rla="routerLinkActive"
+                  [active]="rla.isActive">
+                 {{link.label}}</a>
+                 
+              </nav>
+              <div class="peddles">
+                  <button id="pdl-btn"class="my-peddle peddle-left-button" (click)="leftClick()">
+                    <span><i class="fas fa-chevron-left"></i></span>
+                  </button>
+                  <button id="pdr-btn" class="my-peddle peddle-right-button" (click)="rightClick()">
+                    <span><i class="fas fa-chevron-right"></i></span>
+                  </button>
+                </div>
+
+                <router-outlet></router-outlet>
+              
+              <!-- <mat-tab-group flex>
+                <mat-tab flex label="First"> Content 1 </mat-tab>
+                <mat-tab flex label="Second"> Content 2 </mat-tab>
+                <mat-tab flex label="Third"> Content 3 </mat-tab>
+              </mat-tab-group> -->
             </mat-sidenav-content>
           </mat-sidenav-container>
         </div>
@@ -145,5 +182,4 @@
       
       </div>
 </div>
-<router-outlet></router-outlet>
 

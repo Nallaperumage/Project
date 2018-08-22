@@ -5,8 +5,8 @@ body {
   transition: background 0.1s;
 }
 
-.outlet-area{
-  height:1000px;
+.outlet-area {
+  height: 1080px;
 }
 
 .header {
@@ -67,13 +67,14 @@ body {
   transform: translateX(0);
   transition: 0.2s;
 }
+
 .user-info.ham-clicked {
   visibility: hidden;
   transform: translateX(200%);
   transition: 0.2s;
 }
 
-.user-info.mobile-match{
+.user-info.mobile-match {
   display: block;
 }
 
@@ -118,13 +119,13 @@ body {
   transition: 0.2s;
 }
 
-.list-user{
+.list-user {
   padding: 3px;
 }
 
 @media ( hover: none) {
   .my-navi li a:hover {
-     color: #fff;
+    color: #fff;
   }
 }
 
@@ -158,11 +159,9 @@ body {
     width: 100%;
     height: 100%;
   }
-
-  .upper-row{
+  .upper-row {
     z-index: 8;
   }
-
   .logo {
     left: 40%;
   }
@@ -175,8 +174,6 @@ body {
     left: 0.2em;
     cursor: pointer;
   }
-  
-
   .hamberger,
   .hamberger::before,
   .hamberger::after {
@@ -245,7 +242,6 @@ body {
     transform: scale(1.1) translateY(-24px);
     transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
   }
-
   .my-navi.ham-clicked {
     visibility: visible;
     transition-delay: 0s;
@@ -282,90 +278,12 @@ body {
     height: 100%;
     transform: translateY(0);
   }
-  
 }
-
 
 .fa {
   font-size: 1.5em;
 }
 
-// .side-navi{
-// 	position:absolute;
-// 	list-style:none;
-// 	text-align:center;
-// 	width:180px;
-// 	left:50%;
-// 	margin-left:-90px;
-// 	top:70px;
-// 	max-height:0px;
-// 	overflow:hidden;
-// 	transition:max-height 0.4s linear;
-// }
-// .side-navi li{
-// 	background-color:#313131;
-// }
-// .side-navi li a{
-// 	padding:12px;
-// 	color:#fff !important;
-// 	text-decoration:none !important;
-// 	display:block;
-// }
-// .side-navi li:nth-child(odd){ /* zebra stripes */
-// 	background-color:#363636;
-// }
-// .side-navi li:hover{
-// 	background-color:#444;
-// }
-// .side-navi li:first-child{
-// 	border-radius:3px 3px 0 0;
-// 	margin-top:25px;
-// 	position:relative;
-// }
-// .side-navi li:first-child:before{ /* the pointer tip */
-// 	content:'';
-// 	position:absolute;
-// 	width:1px;
-// 	height:1px;
-// 	border:5px solid transparent;
-// 	border-bottom-color:#313131;
-// 	left:100%;
-// 	top:-10px;
-// 	margin-left:-5px;
-// }
-// .side-navi li:last-child{
-// 	border-bottom-left-radius:3px;
-// 	border-bottom-right-radius:3px;
-// }
-/* This will trigger the CSS */
-
-/* transition animation on hover */
-
-// .side-navi:hover ul{
-// 	max-height:200px; /* Increase when adding more dropdown items */
-// }
-// .my-tip{
-//   overflow: hidden;
-//   position: absolute;
-//   bottom: -5px;
-//   left: 0;
-//   width: 100%;
-//   height: 10px;
-//   z-index: 1;
-// }
-// .my-tip::after{
-//   left: 50%;
-//   border: 1px solid;
-//   content: "";
-//   display: block;
-//   position: absolute;
-//   top: 48px;
-//   width: 12px;
-//   height: 12px;
-//   transform: rotate(45deg);
-//   transform-origin: 0% 0;
-//   z-index: 1;
-// }
 .user-tool-area {
   min-width: 320px;
 }
@@ -379,37 +297,35 @@ body {
   top: 52px;
 }
 
-.user-info-navi.user-clicked{
-  z-index: 2 ;
+.user-info-navi.user-clicked {
+  z-index: 2;
 }
 
-.user-info-navi.user-not-clicked{
+.user-info-navi.user-not-clicked {
   transform: translateY(-200%);
 }
 
-
-@media only screen and (max-width: 1268px) and (min-width:1024px){
-  .user-info-navi{
-    position:fixed;
+@media only screen and (max-width: 1268px) and (min-width:1024px) {
+  .user-info-navi {
+    position: fixed;
   }
-  
 }
 
-@media only screen and (min-width: 1269px){
-  .user-info-navi{
+@media only screen and (min-width: 1269px) {
+  .user-info-navi {
     right: -9%;
   }
-  
 }
 
 .site-navi {
-  position: absolute;
+  position: fixed;
   background: none;
-  height: $listHeight*6;
+  height: auto;
+  max-height: $listHeight*7;
   width: 288px;
   margin: 0;
   margin-right: 0;
-  top: 0;
+  top: 52px;
   bottom: 0;
   right: 2%;
   padding: 0 3em;
@@ -421,7 +337,30 @@ body {
   transition: 0.2s;
 }
 
-.site-navi li:first-child{
+.site-navi.user-not-logged {
+  height: auto;
+  max-height: $listHeight*3;
+  width: 220px;
+}
+
+.site-navi li:first-child {
+  text-align: center;
+  height: 4.5em;
+}
+
+.user-name {
+  position: relative;
+  top: 1.5em;
+}
+
+.profile-pic {
+  position: absolute;
+  top: -10px;
+  width: 70px;
+  height: 50px;
+  left: 31%;
+  border-radius: 50%;
+  font-size: 3em;
   text-align: center;
 }
 
@@ -442,7 +381,7 @@ body {
 
 .user-pointer.large-query {
   position: absolute;
-  top:30px;
+  top: 30px;
   right: -5px;
   z-index: 3;
 }
@@ -454,7 +393,6 @@ body {
 .user-pointer.trans-query {
   top: 30px;
 }
-
 
 .user-pointer.user-clicked {
   transform: translateX(0);
@@ -475,6 +413,12 @@ body {
   pointer-events: none;
   transform: scale(-1.1) translateY(24px);
   transition: opacity 0.25s ease-out, transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+}
+
+.site-navi.user-not-logged li {
+  text-align: unset;
+  top: 20px;
+  height: 3em;
 }
 
 .site-navi.user-clicked {
@@ -527,11 +471,11 @@ body {
   transform: translateY(0);
 }
 
-.site-item a{
+.site-item a {
   cursor: pointer;
 }
 
-.site-item-icon{
+.site-item-icon {
   display: inline-block;
   font-size: 1em;
   margin-right: 1em;
@@ -540,10 +484,21 @@ body {
   color: rgba(0, 0, 0, 0.2);
 }
 
-
 @media only screen and (max-width: 1268px) {
   .site-navi {
     right: 2%;
+  }
+}
+
+@media only screen and (min-width: 1180px) {
+  .site-navi.user-not-logged {
+    right: unset;
+  }
+}
+
+@media only screen and (min-width: 1268px) {
+  .site-navi {
+    right: unset;
   }
 }
 
@@ -552,18 +507,29 @@ body {
     min-width: 320px;
     margin-right: 0;
   }
-}
-
-@media only screen and (min-height: $listHeight*6),
-(max-width:320px) and (min-height:$listHeight*6) {
-  .user-tool-area,
-  .site-navi {
-    height: $listHeight*6;
+  .site-navi.user-not-logged {
+    min-width: 220px;
+  }
+  .profile-pic {
+    left: 34%;
   }
 }
 
+@media only screen and (min-height: $listHeight*7),
+(max-width:320px) and (min-height:$listHeight*7) {
+  .user-tool-area,
+  .site-navi {
+    height: $listHeight*7;
+  }
+  .site-navi.user-not-logged {
+    height: $listHeight*3;
+  }
+  .profile-pic {
+    left: 35.5%;
+  }
+}
 
-@media only screen and (max-width: 419px) {
+@media only screen and (max-width: 340px) {
   .user-info-navi {
     border-radius: 0;
     border-width: 0 0 1px 0;
@@ -577,18 +543,15 @@ body {
     right: 0;
     width: inherit;
   }
+  .site-navi.user-not-logged {
+    left: unset;
+    right: 2%;
+  }
   .user-pointer {
     right: 1.25em;
   }
+  .profile-pic {
+    left: 35.5%;
+  }
 }
 
-.profile-pic{
-  position: absolute;
-  top: -10px;
-  width: 70px;
-  height: 50px;
-  left: 35%;
-  border-radius: 50%;
-  font-size: 3em;
-  text-align: center;
-}

@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 
-import { AuthenticationService, LoginUser } from './services/authentication.service';
-import { headersToString } from 'selenium-webdriver/http';
+import { AuthenticationService, UserDetails } from './services/authentication.service';
 
 
 @Component({
@@ -15,7 +14,7 @@ import { headersToString } from 'selenium-webdriver/http';
 
 
 
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, DoCheck {
 
   isCollapsed = true;
   aboutCollapsed = true;
@@ -23,7 +22,9 @@ export class AppComponent implements OnInit, OnDestroy {
   wasClicked = false;
   aboutClicked = false;
   userClicked = false;
-  details: LoginUser;
+  details: UserDetails;
+  userLogged = false;
+  errorMsg;
 
 
   mobileQuery: MediaQueryList;
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(public auth: AuthenticationService, private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor( public auth: AuthenticationService, private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) {
     this.mobileQuery = media.matchMedia('(max-width: 767px)');
     this.largeQuery = media.matchMedia('(max-width: 767px)');
     this.transition = media.matchMedia('(max-width: 767px)');
@@ -43,13 +44,23 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.auth.profile().subscribe(user => {
-      this.details = user;
-    }, (err) => {
-      console.error(err);
-    });
+    
   }
 
+  ngDoCheck() {
+    if(this.auth.isLoggedIn()){
+      this.userLogged = true;
+      this.auth.profile().subscribe(user => {
+        this.details = user;
+      });
+    }
+    else{
+      this.userLogged = false;
+    }
+  }
+
+  // document.getElementById('tada').replaceChild(newchild, old child);
+ 
   ngOnDestroy(): void {
     // this.auth.profile().subscribe(user=>{
     //   this.details =user;
@@ -76,6 +87,16 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userClicked = !this.userClicked;
   }
 
+  getUserName(){
+    if(this.auth.isLoggedIn()){
+      this.auth.profile().subscribe(user => {
+        this.details = user;
+      }, (err) => {
+        console.error(err);
+      });
+    }
+  }
+
   removeIt(){
     this.userCollapsed = true;
     this.userClicked = false;
@@ -87,10 +108,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
-  viewProfile() {
-    setTimeout(() => {
-      this.router.navigate(['user/profile']);
-    }, 100);
+  user() {
+    this.toggleUser();
+    this.router.navigate(['user']);
   }
 
   tanh() {
@@ -101,58 +121,48 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   home() {
-    setTimeout(() => {
       this.userCollapsed = true;
       this.userClicked = false;
-      this.router.navigate(['/']);
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-    }, 100);
+      this.router.navigate(['/']);
   }
 
   service() {
-    setTimeout(() => {
       this.userCollapsed = true;
       this.userClicked = false;
-      this.router.navigate(['service']);
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-    }, 100);
+      this.router.navigate(['service']);
   }
 
   pricing() {
-    setTimeout(() => {
       this.userCollapsed = true;
       this.userClicked = false;
-      this.router.navigate(['pricing']);
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-    }, 100);
+      this.router.navigate(['pricing']);
   }
 
   maps() {
-    setTimeout(() => {
       this.userCollapsed = true;
       this.userClicked = false;
-      this.router.navigate(['maps']);
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-    }, 100);
+      this.router.navigate(['maps']);
   }
 
   forum() {
-    setTimeout(() => {
       this.userCollapsed = true;
       this.userClicked = false;
-      this.router.navigate(['forum']);
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-    }, 100);
+      this.router.navigate(['forum']); 
   }
 
   action() {
@@ -183,15 +193,20 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
+    this.toggleUser();
     setTimeout(() => {
+      this.router.navigate(['/home']);
       this.auth.logout();
-    }, 100);
+    }, 300);
   }
 
   login() {
-    setTimeout(() => {
-      this.router.navigate(['login']);
-      this.toggleUser();
-    }, 100);
+    this.toggleUser();
+    this.router.navigate(['login']);
+  }
+
+  signUp(){
+    this.toggleUser();
+    this.router.navigate(['signUp']);
   }
 }
