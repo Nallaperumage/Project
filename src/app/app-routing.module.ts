@@ -17,15 +17,11 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { EditorComponent } from './editor/editor.component';
+import { NotificationComponent } from './notification/notification.component';
   
 
 
 const routes: Routes = [
-  {
-    path: 'profile',
-    component: UserComponent
-  },
-
   {
  
     path: 'login',
@@ -43,6 +39,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'profile',
@@ -100,6 +97,11 @@ const routes: Routes = [
   {
     path: 'editor',
     component: EditorComponent
+  },
+
+  {
+    path: 'notifications',
+    component: NotificationComponent
   },
 
 ];

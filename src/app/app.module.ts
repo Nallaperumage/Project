@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -67,7 +68,10 @@ import { ActivitiesComponent } from './user/activities/activities.component';
     HttpModule,
     HttpClientModule,
     MaterialModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA9mI2mmvzIk8307ENb_7QTXQYPi_slRfU'
+    })
   ],
   providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService ],
   bootstrap: [ AppComponent ]

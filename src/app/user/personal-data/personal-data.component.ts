@@ -12,11 +12,12 @@ export class PersonalDataComponent implements OnInit {
   constructor( private auth: AuthenticationService ) { }
 
   ngOnInit() {
-    this.auth.profile().subscribe(user => {
-      this.details = user;
-    }, (err) => {
-      console.error(err);
-    });
+    // this.auth.profile().subscribe(user => {
+    //   this.details = user;
+    // }, (err) => {
+    //   console.error(err);
+    // });
+    this.details = this.auth.getUserDetails();
   }
 
 }

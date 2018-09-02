@@ -36,6 +36,11 @@ export class AuthenticationService {
 
   constructor( private http: HttpClient, private router: Router ) {}
 
+  private saveSessionToken( token: string ): void {
+    sessionStorage.setItem( 'login-token', token)
+    this.token = token;
+  }
+
   private saveToken( token: string ): void {
     localStorage.setItem('mean-token', token);
     this.token = token;
@@ -88,6 +93,7 @@ export class AuthenticationService {
       map((data: TokenResponse) => {
         if (data.token) {
           this.saveToken(data.token);
+          this.saveSessionToken(data.token);
         }
         return data;
       })

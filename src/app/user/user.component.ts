@@ -14,7 +14,6 @@ export class UserComponent implements OnInit {
   panelOpenState: boolean = false;
   isClicked = false;
   isPClicked = false;
-  details: UserDetails;
 
   mobileQuery: MediaQueryList;
   largeQuery: MediaQueryList;
@@ -46,11 +45,6 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit() {
-    this.auth.profile().subscribe(user => {
-      this.details = user;
-    }, (err) => {
-      console.error(err);
-    });
   }
 
   hideArrow(){

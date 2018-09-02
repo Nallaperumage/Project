@@ -44,15 +44,14 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngOnInit() {
-    
+    if(this.auth.isLoggedIn()){
+      this.details = this.auth.getUserDetails();
+    }
   }
 
   ngDoCheck() {
     if(this.auth.isLoggedIn()){
       this.userLogged = true;
-      this.auth.profile().subscribe(user => {
-        this.details = user;
-      });
     }
     else{
       this.userLogged = false;
