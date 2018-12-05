@@ -7,9 +7,10 @@ import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
+import { environment } from '../environments/environment';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -21,21 +22,24 @@ import { HeaderService } from './services/header.service';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { EditorComponent } from './editor/editor.component';
+import { HomeComponent } from './Components/home/home.component';
+import { AboutComponent } from './Components/about/about.component';
+import { EditorComponent } from './Components/editor/editor.component';
 import { UserComponent } from './user/user.component';
   import { UserPageComponent } from './user/user-page/user-page.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotificationComponent } from './notification/notification.component';
-import { ServiceComponent } from './service/service.component';
-import { PricingComponent } from './pricing/pricing.component';
-import { MapsComponent } from './maps/maps.component';
-import { ForumComponent } from './forum/forum.component';
-import { PersonalDataComponent } from './user/personal-data/personal-data.component';
-import { CreditCardsComponent } from './user/credit-cards/credit-cards.component';
-import { ActivitiesComponent } from './user/activities/activities.component';
+import { LoginComponent } from './Components/login/login.component';
+import { SignupComponent } from './Components/signup/signup.component';
+import { NotificationComponent } from './Components/notification/notification.component';
+import { ServiceComponent } from './Components/service/service.component';
+import { PricingComponent } from './Components/pricing/pricing.component';
+import { MapsComponent } from './Components/maps/maps.component';
+import { ForumComponent } from './Components/forum/forum.component';
+import { PersonalDataComponent } from './user/Account/personal-data/personal-data.component';
+import { CreditCardsComponent } from './user/Account/credit-cards/credit-cards.component';
+import { ActivitiesComponent } from './user/Account/activities/activities.component';
+import { TextEditorComponent } from './user/Editor/text-editor/text-editor.component';
+import { MapEditorComponent } from './user/Maps/map-editor/map-editor.component';
+import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.component';
 
 
 
@@ -56,21 +60,24 @@ import { ActivitiesComponent } from './user/activities/activities.component';
     ForumComponent,
     PersonalDataComponent,
     CreditCardsComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    TextEditorComponent,
+    MapEditorComponent,
+    ChartEditorComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    EditorModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
     MaterialModule,
+    EditorModule,
     NgbModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyA9mI2mmvzIk8307ENb_7QTXQYPi_slRfU'
+      apiKey: environment.agmApiKey
     })
   ],
   providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService ],

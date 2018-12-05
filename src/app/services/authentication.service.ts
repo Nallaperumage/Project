@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Router } from '@angular/router';
 import { RegisterUser } from '../user/user.model'; 
+import { AnimationKeyframesSequenceMetadata } from '@angular/animations';
 
 //Interfaces
 export interface UserDetails {
@@ -36,10 +37,10 @@ export class AuthenticationService {
 
   constructor( private http: HttpClient, private router: Router ) {}
 
-  private saveSessionToken( token: string ): void {
-    sessionStorage.setItem( 'login-token', token)
-    this.token = token;
-  }
+  // private saveSessionToken( token: string ): void {
+  //   sessionStorage.setItem( 'login-token', token)
+  //   this.token = token;
+  // }
 
   private saveToken( token: string ): void {
     localStorage.setItem('mean-token', token);
@@ -93,7 +94,7 @@ export class AuthenticationService {
       map((data: TokenResponse) => {
         if (data.token) {
           this.saveToken(data.token);
-          this.saveSessionToken(data.token);
+          // this.saveSessionToken(data.token);
         }
         return data;
       })
@@ -116,6 +117,32 @@ export class AuthenticationService {
   
   public profile(): Observable<any> {
     return this.request('get', 'user/personal-data');
+  }
+
+  public processPayment(token: any, amount: number) {
+    
+    if(this.isLoggedIn()){
+      const user = this.getUserDetails();
+      const email = user.email;
+      const payment = { token, amount, email }
+      return this.http.post('user/credit-cards',payment).subscribe(data => {
+        console.log(data);
+      });
+    }
+    const payment = { token, amount }
+    return this.http.post('user/credit-cards',payment)
+    .subscribe(data => {
+      console.log(data);
+    });
+    // 
+    // return this.db.list(`/payments/${this.userId}`).push(payment)
+  }
+  public chartData(test: String, location:any){
+    const params = {test, location};
+
+    return this.http.post('user/chart-editor', params).subscribe(response => {
+      console.log(response);
+    })
   }
 
 }

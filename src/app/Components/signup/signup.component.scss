@@ -1,0 +1,22 @@
+.container{
+    position:absolute;
+    top:60px;
+    padding: 40px 30px 40px 30px;
+    background: rgba( chartreuse, 0.6);
+    left: 25%;
+    max-width: 600px;
+}
+
+h1{
+    color: white;
+}
+
+.submit-btn{
+    background: rgba(blue, 0.6);
+    color: white;
+}
+
+.btnWrap{
+    position: relative;
+    left: 40%;
+}

@@ -1,0 +1,144 @@
+<!-- <section>
+  <div id="login">
+    <h1>Welcome Back!</h1>
+
+    <form #loginForm="ngForm"   (ngSubmit)="onSave(loginForm.value)" >
+
+      <div class="field-wrap">
+        <label>
+          Name
+          <span class="req">*</span>
+        </label>
+        <input type="text" id="name" [(ngModel)]="name" name="name" required autocomplete="off" />
+      </div>
+
+      <div class="field-wrap">
+        <label>
+          Email Address
+          <span class="req">*</span>
+        </label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required autocomplete="off" />
+      </div>
+
+      <div class="field-wrap">
+        <label>
+          Password
+          <span class="req">*</span>
+        </label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="off" />
+      </div>
+
+      <p class="forgot">
+        <a href="#">Forgot Password?</a>
+      </p>
+
+      <input class="button button-block" type="submit" value="{{valbutton}}"/>
+      
+
+    </form>
+
+  </div>
+</section> -->
+
+<!-- <section class="get">
+  <h1>Get Data</h1>
+  <a href="/users">Load Data</a>
+  <div>
+    <article class="user">
+      <div>Name : {{this.name}}</div>
+      <div>Email : {{this.email}}</div>
+      <div>Password : {{this.password}}</div>
+      <div>Id : {{this.id}}</div>
+    </article>
+  </div>
+
+</section> -->
+<div class="boy">
+  
+</div>
+<div class="new" [class.sign-up-clicked]="signUpClicked">
+  <button type="button" id="btnTrigger" class="btn btn-primary" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo">Open</button>
+
+  <div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <button type="button" class="close" (click)="loginClose()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form #loginForm="ngForm" (ngSubmit)="login()">
+            <div class="container">
+              <div class="typing-error" *ngIf="tree">
+                {{errorMsg}}
+              </div>
+              <div class="form-wrap">
+                <mat-form-field>
+                  <input matInput class="validate" type="email" name="email" #email="ngModel" [(ngModel)]="credentials.email" required/>
+                  <mat-label>Email</mat-label>
+                </mat-form-field>
+                <a *ngIf="wrongEmail && loginClicked">Wrong Email</a>
+              </div>
+              <div class="form-wrap">
+                <mat-form-field>
+                  <input matInput type="password" name="password" #password="ngModel" [(ngModel)]="credentials.password" placeholder="password"
+                    required/>
+                </mat-form-field>
+                <a *ngIf="wrongPassword && loginClicked">Wrong Password!</a>
+              </div>
+              <div class="form-wrap form-links">
+                <a  (click)="recover()">Forgot your SLGSP ID or password?</a>
+                <br/>
+                <a  (click)="signUp()">Don't have an SLGSP Account? Create one now.</a>
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="loginClose() && loginClicked==true" data-dismiss="modal">Close</button>
+                <button id="btnLogin" type="submit" class="btn btn-success">Log In</button>
+              </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="ngb">
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button">
+                <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+    </div>
+  </ng-template>
+  
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+  <hr>
+
+<pre>{{closeResult}}</pre>
+</div> -->

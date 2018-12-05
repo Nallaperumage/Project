@@ -1,0 +1,65 @@
+<!-- <div id="container" style="width: 75%;">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+<button type="button" class="btn btn-primary" (click)="done()"><a id="link1" download="ChartPng.png">Save as png</a></button>
+<button type="button" class="btn btn-primary" (click)="done()"><a id="link2" download="ChartJpg.pdf">Save as jpg</a></button>
+
+<div>
+    <form #getData = "ngForm" (ngSubmit)="clickme()">
+        <label for="test"></label>
+        <input id="test" type="text" name ="test" [(ngModel)]="test"><br/>
+        <label for="latitude"></label>
+        <input id="latitude" type="text" name ="latitudes" [(ngModel)]="location.latitudes"><br/>
+        <label for="longitude"></label>
+        <input id="longitude" type="text" name ="longitudes" [(ngModel)]="location.longitudes">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    
+</div> -->
+
+<div class="collect-info">
+    <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button>
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Choose the area you want locations</ng-template>
+          <mat-form-field>
+            <agm-map [latitude]="latitudes" [longitude]="longitudes" [zoom]="zoom" [scaleControl]="true" (mapClick)="onChoseLocation($event)">
+                <agm-marker *ngIf="locationChosen" [latitude]="lat" [longitude]="lng" visible></agm-marker>
+            </agm-map>
+            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="function()">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Address" formControlName="secondCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+</div>
+
+<!-- <div > 
+    <agm-map [latitude]="latitudes" [longitude]="longitudes" [zoom]="zoom" (mapClick)="onChoseLocation($event)">
+        <agm-marker *ngIf="locationChosen" [latitude]="lat" [longitude]="lng" visible></agm-marker>
+    </agm-map>
+</div> -->

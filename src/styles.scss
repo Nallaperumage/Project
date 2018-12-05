@@ -19,6 +19,9 @@ body {
   min-width: 340px;
   font-weight: 400;
   letter-spacing: -.022em;
+  &::-webkit-scrollbar  {
+    display: none;
+  }
 }
 
 .basic-container {

@@ -7,6 +7,10 @@
   z-index: 2;
 }
 
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 .user-toolbar {
     display: none;
     border: none;
@@ -58,7 +62,7 @@
 }
 
 .content-area {
-  padding: 1em 0 0 1em;
+  padding: 0 0 0 1em;
   height: 1080px;
 }
 
@@ -151,12 +155,37 @@ h1.user-app-name {
   outline-color: transparent;
 }
 
+.sub-nav{
+  position:fixed;
+  background:linear-gradient(135deg, #727cf5 0, #8f75da 60%) ;
+  left: 44px;
+  opacity: 1;
+  z-index: 9999;
+}
+.user-image{
+  width:100%;
+  height: auto;
+  background: url('../../assets/userpage.jpg');
+}
+
+.large-sub-nav{
+  left: 240px;
+}
+
+
 .peddles{
   display:none;
 }
 
+.outlet{
+  position: relative;
+  top:60px;
+  overflow:hidden;
+}
+
 .mat-tab-link{
   text-decoration: none;
+  color:white;
 }
 
 
@@ -180,8 +209,12 @@ h1.user-app-name {
   background: transparent;  /* optional: just make scrollbar invisible */
 }
 
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 .content-area {
-  padding: 1em 0 0 0.5em;
+  padding: 0 0 0 0.5em;
 }
 
 .peddles{

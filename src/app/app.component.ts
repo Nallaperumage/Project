@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
   details: UserDetails;
   userLogged = false;
   errorMsg;
+  userName;
 
 
   mobileQuery: MediaQueryList;
@@ -46,6 +47,10 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
   ngOnInit() {
     if(this.auth.isLoggedIn()){
       this.details = this.auth.getUserDetails();
+      this.userName = this.auth.getUserDetails().userName;
+    }
+    else{
+      this.userName ='#';
     }
   }
 
@@ -125,7 +130,7 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
   }
 
   service() {

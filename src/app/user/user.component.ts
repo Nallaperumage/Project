@@ -13,7 +13,13 @@ export class UserComponent implements OnInit {
 
   panelOpenState: boolean = false;
   isClicked = false;
-  isPClicked = false;
+  isAccountClicked = false;
+  isEditorClicked = false;
+  isFormsClicked = false;
+  isChartsClicked = false;
+  isMapsClicked = false;
+  isTablesClicked = false;
+  isDocumentsClicked = false;
 
   mobileQuery: MediaQueryList;
   largeQuery: MediaQueryList;
@@ -27,11 +33,33 @@ export class UserComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  navLinks = [
-    { path: 'personal-data', label: 'Personal Data' },
-    { path: 'credit-cards', label: 'Credit Cards' },
-    { path: 'activities', label: 'Activilies' }
-  ]
+  navLinks1 = [
+      { path: 'personal-data', label: 'Personal Data' },
+      { path: 'credit-cards', label: 'Credit Cards' },
+      { path: 'activities', label: 'Activilies' }
+  ];
+
+  navLinks2 = [
+    { path: 'text-editor', label: 'Text Editor' },
+  ];
+
+  navLinks3 = [
+    { path: 'map-editor', label: 'Map Editor' },
+  ];
+
+  navLinks4 = [
+    { path: 'chart-editor', label: 'Chart Editor' },
+  ];
+  navLinks5 = [
+    { path: 'map-editor', label: 'Map Editor' },
+  ];
+  navLinks6 = [
+    { path: 'map-editor', label: 'Map Editor' },
+  ];
+  navLinks7 = [
+    { path: 'map-editor', label: 'Map Editor' },
+  ];
+
 
   
   constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) { 
@@ -45,13 +73,154 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit() {
+
   }
 
   hideArrow(){
     this.isClicked = !this.isClicked;
   }
+  mobileRouteAccount(){
+    this.isClicked = !this.isClicked;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+    this.isAccountClicked = !this.isAccountClicked;
+  }
+  mobileRouteEditor(){
+    this.isClicked = !this.isClicked;
+    this.isAccountClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+    this.isEditorClicked = !this.isEditorClicked;
+  }
+  mobileRouteforms(){
+    this.isClicked = !this.isClicked;
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = !this.isFormsClicked;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  mobileRouteCharts(){
+    this.isClicked = !this.isClicked;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isAccountClicked = false;
+    this.isChartsClicked = !this.isChartsClicked;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  mobileRouteMaps(){
+    this.isClicked = !this.isClicked;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isAccountClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = !this.isMapsClicked;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  mobileRouteTables(){
+    this.isClicked = !this.isClicked;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isAccountClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = !this.isTablesClicked;
+    this.isDocumentsClicked = false;
+  }
+  mobileRouteDocuments(){
+    this.isClicked = !this.isClicked;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isAccountClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = !this.isDocumentsClicked;
+  }
+
+
+
+  routeAccount(){
+    this.isAccountClicked = true;
+    this.isFormsClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  routeEditor(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = true;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+
+  }
+  routeforms(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = true;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  routeCharts(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = true;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  routeMaps(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = true;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = false;
+  }
+  routeTables(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = true;
+    this.isDocumentsClicked = false;
+  }
+  routeDocuments(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
+    this.isFormsClicked = false;
+    this.isChartsClicked = false;
+    this.isMapsClicked = false;
+    this.isTablesClicked = false;
+    this.isDocumentsClicked = true;
+  }
 
   leftClick(){
+    this.isAccountClicked = false;
+    this.isEditorClicked = false;
     document.getElementById('my-mat-nav').scrollLeft -= 200;
   }
 
