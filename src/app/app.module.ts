@@ -85,7 +85,13 @@ import { DocumentsComponent } from './user/Documents/documents/documents.compone
       apiKey: environment.agmApiKey
     })
   ],
-  providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService, GoogleMapsAPIWrapper ],
+  providers: [
+    DatabaseService,
+    AuthenticationService,
+    AuthGuardService,
+    HeaderService,
+    GoogleMapsAPIWrapper
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
