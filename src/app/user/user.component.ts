@@ -50,16 +50,14 @@ export class UserComponent implements OnInit {
   navLinks4 = [
     { path: 'chart-editor', label: 'Chart Editor' },
   ];
-  navLinks5 = [
-    { path: 'map-editor', label: 'Map Editor' },
-  ];
-  navLinks6 = [
-    { path: 'map-editor', label: 'Map Editor' },
-  ];
-  navLinks7 = [
-    { path: 'map-editor', label: 'Map Editor' },
-  ];
 
+  navLinks6 = [
+    { path: 'tables', label: 'Tables' },
+  ];
+  
+  navLinks7 = [
+    { path: 'documents', label: 'Documents' },
+  ];
 
   
   constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) { 

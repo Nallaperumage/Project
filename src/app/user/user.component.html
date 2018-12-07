@@ -93,11 +93,11 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteChart()">Chart
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteCharts()">Chart
                     Editor</li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeChart()">Chart Editor</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeCharts()">Chart Editor</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -109,17 +109,10 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="snav.toggle() && mobileRouteTable()">Text
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteTable()">Map
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteTable()">Chart
-                    Editor</li>
+                  <li class="sub-title-item" routerLink="tables" (click)="snav.toggle() && mobileRouteTables()">Table</li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="routeTable()">Text Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="routeTable()">Map Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeTable()">Chart Editor</li>
+                  <li class="sub-title-item" routerLink="tables" (click)="routeTables()">Table</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -131,17 +124,10 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="snav.toggle() && mobileRouteMap()">Text
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteMap()">Map
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteMap()">Chart
-                    Editor</li>
+                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteMaps()">Maps</li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="routeMap()">Text Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="routeMap()">Map Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeMap()">Chart Editor</li>
+                  <li class="sub-title-item" routerLink="map-editor" (click)="routeMaps()">Map</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -153,17 +139,12 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="snav.toggle() && mobileRouteDocument()">Text
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteDocument()">Map
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteDocument()">Chart
-                    Editor</li>
+                  <li class="sub-title-item" routerLink="documents" (click)="snav.toggle() && mobileRouteDocuments()">
+                    Documents
+                  </li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="routeDocument()">Text Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="routeDocument()">Map Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeDocument()">Chart Editor</li>
+                  <li class="sub-title-item" routerLink="documents" (click)="routeDocuments()">Documents</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -199,31 +180,31 @@
 
             </nav>
             <nav *ngIf="isFormClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+              <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
             <nav *ngIf="isChartClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+              <a mat-tab-link *ngFor="let link of navLinks4" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
             <nav *ngIf="isMapClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+              <a mat-tab-link *ngFor="let link of navLinks3" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
             <nav *ngIf="isTableClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+              <a mat-tab-link *ngFor="let link of navLinks6" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
             <nav *ngIf="isDocumentClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+              <a mat-tab-link *ngFor="let link of navLinks7" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 

@@ -17,6 +17,8 @@ import { UserComponent } from './user/user.component';
   import { TextEditorComponent } from './user/Editor/text-editor/text-editor.component';
   import { MapEditorComponent } from './user/Maps/map-editor/map-editor.component';
   import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.component';
+  import { TablesComponent } from './user/Tables/tables/tables.component';
+  import { DocumentsComponent } from './user/Documents/documents/documents.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { EditorComponent } from './Components/editor/editor.component';
@@ -77,6 +79,16 @@ const routes: Routes = [
       {
         path: 'chart-editor',
         component: ChartEditorComponent,
+        // canActivate: [AuthGuardService]
+      },
+      {
+        path: 'tables',
+        component: TablesComponent,
+        // canActivate: [AuthGuardService]
+      },
+      {
+        path: 'documents',
+        component: DocumentsComponent,
         // canActivate: [AuthGuardService]
       }
     ]

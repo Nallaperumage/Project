@@ -128,7 +128,7 @@ export class ChartEditorComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(){
-      this.done();
+      // this.done();
   }
 
   done(){

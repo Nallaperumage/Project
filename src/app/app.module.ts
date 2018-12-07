@@ -5,7 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import {} from 'googlemaps';
 
 import { environment } from '../environments/environment';
 
@@ -40,6 +41,8 @@ import { ActivitiesComponent } from './user/Account/activities/activities.compon
 import { TextEditorComponent } from './user/Editor/text-editor/text-editor.component';
 import { MapEditorComponent } from './user/Maps/map-editor/map-editor.component';
 import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.component';
+import { TablesComponent } from './user/Tables/tables/tables.component';
+import { DocumentsComponent } from './user/Documents/documents/documents.component';
 
 
 
@@ -63,7 +66,9 @@ import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.co
     ActivitiesComponent,
     TextEditorComponent,
     MapEditorComponent,
-    ChartEditorComponent
+    ChartEditorComponent,
+    TablesComponent,
+    DocumentsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -80,7 +85,7 @@ import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.co
       apiKey: environment.agmApiKey
     })
   ],
-  providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService ],
+  providers: [ DatabaseService, AuthenticationService, AuthGuardService, HeaderService, GoogleMapsAPIWrapper ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
