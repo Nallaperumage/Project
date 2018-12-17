@@ -5,8 +5,8 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { DatabaseService } from '../../services/database.service';  
-import { AuthenticationService, LoginUser } from '../../services/authentication.service';
+import { DatabaseService } from '../../Services/database.service';  
+import { AuthenticationService, LoginUser } from '../../Services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -104,7 +104,9 @@ export class LoginComponent implements OnInit, DoCheck {
     this.router.navigate(['signUp']);
   }
 
-
+  recover(){
+    this.auth.forgotEmail();
+  }
 
  
   // onSave = function(user,isValid: boolean) {    

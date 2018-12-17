@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 import { HomeComponent } from './Components/home/home.component';
 import { AboutComponent } from './Components/about/about.component';
@@ -95,8 +95,12 @@ const routes: Routes = [
   },
 
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
+  },
+  { path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
 
   {

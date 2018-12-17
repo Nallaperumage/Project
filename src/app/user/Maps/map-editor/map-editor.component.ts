@@ -1,8 +1,10 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AgmMap, MouseEvent, AgmDataLayer, GoogleMapsScriptProtocol, LatLngLiteral, AgmPolygon, PolyMouseEvent, PolygonManager, GoogleMapsAPIWrapper } from '@agm/core';
 import { } from '@types/googlemaps';
 import { Polygon,Marker,Point,LatLng } from '@agm/core/services/google-maps-types';
 import { ThrowStmt } from '@angular/compiler';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-map-editor',
@@ -11,7 +13,11 @@ import { ThrowStmt } from '@angular/compiler';
 })
 
 
-export class MapEditorComponent implements OnInit, DoCheck {
+export class MapEditorComponent implements OnInit {
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   markers: marker[]=[];
   myArray: LatLngLiteral[]=[];
@@ -27,12 +33,15 @@ export class MapEditorComponent implements OnInit, DoCheck {
 
   mylatlng:LatLngLiteral={lat:51.673858, lng:7.815982};
 
-  constructor( private mapsWrapper:GoogleMapsAPIWrapper ) { }
+  constructor( private mapsWrapper:GoogleMapsAPIWrapper, private _formBuilder: FormBuilder ) { }
 
   ngOnInit() {
-  }
-  
-  ngDoCheck(){
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
   clickedMarker(label: string, index: number) {
@@ -59,7 +68,6 @@ export class MapEditorComponent implements OnInit, DoCheck {
     });
   }
   check1(){
-    // this.mylatlng.Latlng(-10,10);
     var x = new google.maps.LatLng(51.673858, 7.815982)
     var isValidDeliveryAddress = Boolean(this.mapsWrapper.containsLocation(x, this.mypolygon));
     console.log(isValidDeliveryAddress);
@@ -69,47 +77,7 @@ export class MapEditorComponent implements OnInit, DoCheck {
     this.myArray = this.markers ;
     this.myArray.push(this.markers[0]);
     this.paths = this.myArray;
-
-    this.mypolygon = new google.maps.Polygon({paths: this.paths})
-    // .then((polygon: any) => {
-    //   this.mypolygon = polygon
-    // });
-     
-    //   var isValidDeliveryAddress = Boolean(this.mapsWrapper.containsLocation(mylatlng, 
-    //    mypolygon));
-
-    // console.log(isValidDeliveryAddress)
-
-    // var mylatlng: LatLngLiteral
-    // mylatlng={lat:this.lat, lng:this.lng};
-    
-    // this.marks.addListener('event', function(e){});
-      // var e = new function(){
-      //   var lat:number=51.673858;
-      //   var lng:number=7.815982;
-      //   // lat()
-      //   this.mapsWrapper.containsLocation(e , mypolygon)
-      //   var mn : Point={51.673858,7.815982}
-      //   mn=
-      //   // mn.constructor(51.673858,7.815982)
-      //   mn.lat();
-      //   // mn.lng();
-        
-      // }
-
-
-  //  var mapMarker = this.mapsWrapper.createMarker({
-  //   position: mylatlng,
-  //   draggable: true,
-  //   clickable: false
-  // }).then((data) => {
-  //   console.log(data);
-  //   data.addListener('dragend', (e) => {
-  //     console.log(e.latLng);
-
-  //   });
-  // });
-    
+    this.mypolygon = new google.maps.Polygon({paths: this.paths})   
   }
 
   workitnot(){
@@ -127,35 +95,14 @@ export class MapEditorComponent implements OnInit, DoCheck {
   //      lng: 7.815982,
   //     //  label: 'A',
   //     //  draggable: true
-  //    },
-  //    {
-  //      lat: 51.373858,
-  //      lng: 7.215982,
-  //     //  label: 'B',
-  //     //  draggable: false
-  //    },
-  //    {
-  //      lat: 51.723858,
-  //      lng: 7.895982,
-  //     //  label: 'C',
-  //     //  draggable: true
   //    }
   //  ]
 
 }
-// just an interface for type safety.
+
 interface marker {
 	lat: number;
 	lng: number;
 	// label?: string;
 	// draggable: boolean;
 }
-
-
-// interface LatLng {
-//   constructor(lat: number, lng: number): void;
-//   LatLng(lat: number, lng: number , noWrap: boolean)
-//   lat(): number;
-//   lng(): number;
-//   toString(): string;
-// }

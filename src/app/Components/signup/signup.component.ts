@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../../services/authentication.service';
-import { RegisterUser } from '../../user/user.model';
+import { AuthenticationService } from '../../Services/authentication.service';
+import { RegisterUser } from '../../Models/user.model';
 
 @Component({
   selector: 'app-signup',

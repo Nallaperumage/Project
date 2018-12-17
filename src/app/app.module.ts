@@ -14,13 +14,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './modules/material.module';
 
-import { DatabaseService } from './services/database.service';
-import { AuthenticationService } from './services/authentication.service';
-import { AuthGuardService } from './services/auth-guard.service';
-import { HeaderService } from './services/header.service';
-
+import { DatabaseService } from './Services/database.service';
+import { AuthenticationService } from './Services/authentication.service';
+import { AuthGuardService } from './Services/auth-guard.service';
+import { HeaderService } from './Services/header.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -45,7 +44,6 @@ import { TablesComponent } from './user/Tables/tables/tables.component';
 import { DocumentsComponent } from './user/Documents/documents/documents.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,22 +51,22 @@ import { DocumentsComponent } from './user/Documents/documents/documents.compone
     AboutComponent,
     EditorComponent,
     UserComponent,
-      LoginComponent,
-      SignupComponent,
+      PersonalDataComponent,
+      CreditCardsComponent,
+      ActivitiesComponent,
+      TextEditorComponent,
+      MapEditorComponent,
+      ChartEditorComponent,
+      TablesComponent,
+      DocumentsComponent,
       UserPageComponent,
+    LoginComponent,
+    SignupComponent,
     NotificationComponent,
     ServiceComponent,
     PricingComponent,
     MapsComponent,
-    ForumComponent,
-    PersonalDataComponent,
-    CreditCardsComponent,
-    ActivitiesComponent,
-    TextEditorComponent,
-    MapEditorComponent,
-    ChartEditorComponent,
-    TablesComponent,
-    DocumentsComponent
+    ForumComponent
   ],
   imports: [
     AppRoutingModule,

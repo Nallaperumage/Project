@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-
-import { AuthenticationService, UserDetails } from '../../services/authentication.service'; 
+import { AuthenticationService, UserDetails } from '../../Services/authentication.service'; 
 
 @Component({
   selector: 'app-user-page',
@@ -22,7 +21,6 @@ export class UserPageComponent implements OnInit {
        laboris nisi ut aliquip ex ea commodo consequat.`);
 
   private _mobileQueryListener: () => void;
-
   
   constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) { 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -42,9 +40,5 @@ export class UserPageComponent implements OnInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-
-
-
 
 }

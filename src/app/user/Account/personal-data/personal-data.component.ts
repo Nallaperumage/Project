@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, UserDetails } from '../../../services/authentication.service'
+import { AuthenticationService, UserDetails } from '../../../Services/authentication.service'
 
 @Component({
   selector: 'app-personal-data',

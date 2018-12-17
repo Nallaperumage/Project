@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.router.isActive('/',true)) {
+    if (this.router.isActive('/home',true)) {
       window.onscroll = function() { 
         var middle = document.getElementById('middle-column');
         // var boundingMiddle = middle.getBoundingClientRect();
@@ -57,49 +57,47 @@ export class HomeComponent implements OnInit, DoCheck, OnDestroy {
         
     }
   
-    //   // let x = window.screen.width;
+      let x = window.screen.width;
   
   
-    //   function topInView(){
-    //     var top = document.getElementById('left-column');
-    //     var boundingTop = top.getBoundingClientRect();
+      function topInView(){
+        var top = document.getElementById('left-column');
+        var boundingTop = top.getBoundingClientRect();
 
-    //     if(x<=991 && (window.innerHeight-boundingTop.top)>100){
-    //       document.getElementById("left-column").classList.add("move-right");
-    //     }
-    //     else{
-    //       document.getElementById("left-column").classList.remove("move-right");
-    //     }
-    //   }
-    //   function middleInView(){
-    //     var middle = document.getElementById('middle-column');
-    //     var boundingMiddle = middle.getBoundingClientRect();
+        if(x<=991 && (window.innerHeight-boundingTop.top)>100){
+          document.getElementById("left-column").classList.add("move-right");
+        }
+        else{
+          document.getElementById("left-column").classList.remove("move-right");
+        }
+      }
+      function middleInView(){
+        var middle = document.getElementById('middle-column');
+        var boundingMiddle = middle.getBoundingClientRect();
 
-    //     if(x<=991 && (window.innerHeight-boundingMiddle.top)>100){
-    //       document.getElementById("middle-column").classList.add("move-left");
-    //     }
-    //     else{
-    //       document.getElementById("middle-column").classList.remove("move-left");
-    //     }
-    //   }
-    //   function bottomInView(){
-    //     var bottom = document.getElementById('right-column');
-    //     var boundingBottom = bottom.getBoundingClientRect(); 
+        if(x<=991 && (window.innerHeight-boundingMiddle.top)>100){
+          document.getElementById("middle-column").classList.add("move-left");
+        }
+        else{
+          document.getElementById("middle-column").classList.remove("move-left");
+        }
+      }
+      function bottomInView(){
+        var bottom = document.getElementById('right-column');
+        var boundingBottom = bottom.getBoundingClientRect(); 
 
-    //     if(x<=991 && (window.innerHeight-boundingBottom.top)>100){
-    //       document.getElementById("right-column").classList.add("move-right");
-    //     }
-    //     else{
-    //       document.getElementById("right-column").classList.remove("move-right");
-    //     }
-    //   }
+        if(x<=991 && (window.innerHeight-boundingBottom.top)>100){
+          document.getElementById("right-column").classList.add("move-right");
+        }
+        else{
+          document.getElementById("right-column").classList.remove("move-right");
+        }
+      }
   
-    //   topInView();
-    //   bottomInView();
-    //   middleInView();
-    // }
-         
-      // }
+      topInView();
+      bottomInView();
+      middleInView();
+    
 
 
     
@@ -123,27 +121,13 @@ export class HomeComponent implements OnInit, DoCheck, OnDestroy {
     //  infowindow.open(this.map, marker); 
   }
 
-   
-
   ngDoCheck(){
     
   }
 
   ngOnDestroy(){
-    window.onscroll;
-    window.removeEventListener;
+
   }
 
-
-  onChoseLocation(event){
-    console.log(event);
-    this.latitudes = event.coords.lat;
-    this.longitudes = event.coords.lng;
-    this.locationChosen = true;
-  }
-
-  login() {
-    this.router.navigate(['login']);
-  }
-
+    
 }

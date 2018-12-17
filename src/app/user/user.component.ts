@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AuthenticationService, UserDetails } from '../services/authentication.service';
+import { AuthenticationService, UserDetails } from '../Services/authentication.service';
 
 @Component({
   selector: 'app-user',

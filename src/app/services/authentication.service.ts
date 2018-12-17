@@ -5,7 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Router } from '@angular/router';
-import { RegisterUser } from '../user/user.model'; 
+import { RegisterUser } from '../Models/user.model'; 
 import { AnimationKeyframesSequenceMetadata } from '@angular/animations';
 
 //Interfaces
@@ -141,6 +141,12 @@ export class AuthenticationService {
     const params = {test, location};
 
     return this.http.post('user/chart-editor', params).subscribe(response => {
+      console.log(response);
+    })
+  }
+
+  public forgotEmail(){
+    return this.http.get('/login/forgot-password').subscribe(response=>{
       console.log(response);
     })
   }
