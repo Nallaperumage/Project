@@ -1,0 +1,101 @@
+body{
+  height: 100%;
+}
+.image-div{
+  min-height: 700px;
+  height: 100%; 
+  background: url("../../../assets/purple_black.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.register{
+  position: relative;
+  padding: 90px 0;
+  text-align: center;
+}
+.register-card{
+  margin: 0 auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  background: rgba(255,252,255, 0.7);
+}
+.register-form {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
+}
+@media only screen and (max-width: 430px) {
+  .register-form{
+    position: relative;
+  }
+  .register-card{
+    position: relative;
+  }
+  .register-half-width {
+    width: 70%;
+  }
+  .register-full-width {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 430px) {
+  .register-form {
+    min-width: 340px;
+  }
+  .register-half-width {
+    width: 49%;
+  }
+  .register-full-width {
+    width: 100%;
+  }
+  
+}
+  
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+.reg-button{
+  background: linear-gradient(135deg, #727cf5 0, #8f75da 60%);
+}
+
+
+#myFooter {
+  position: relative;
+  margin: 0 auto;
+  background-color: #182c39;
+  color: white;
+  padding-top: 35px;
+  min-width: 500px;
+}
+
+#myFooter .footer-copyright {
+  background-color: #10222e;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .footer-copyright p {
+  margin: 10px;
+  color: #ccc;
+}

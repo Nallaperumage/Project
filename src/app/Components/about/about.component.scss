@@ -1,31 +1,257 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.user-body {
+  padding-top: 0px;
 }
 
-.example-is-mobile .example-toolbar {
-  position: fixed;
+.user-is-mobile {
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
 
-h1.example-app-name {
+::-webkit-scrollbar { 
+  display: none; 
+}
+
+.user-toolbar {
+    display: none;
+    border: none;
+}
+
+.panelIco{
+  font-size: 1.2em;
+  margin: 0 10px 0 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .user-toolbar {
+    background: #8f75da;
+    color: rgba(255, 255, 255, 0.75);
+    border-radius: none;
+    display: grid;
+    position: fixed;
+    top: 48px;
+    max-height: 450px;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 2;
+    font-size: 15px;
+    left: -22px;
+    height: 90%;
+    transition: 0.25s;
+  }
+
+  .btnIco{
+    padding: 1.5em .5em 1.5em 2em;
+  }
+
+  .fa-chevron-circle-right:before{
+    color: rgba(0, 0, 0, 0.5);;
+  }
+
+  .hide-arrow {
+    transform: translateX(-200%);
+    transition: 0.25s;
+  }  
+  .content-area.padding-left {
+    left: 3em;
+  }
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
+
+.content-area {
+  padding: 0 0 0 1em;
+  height: 1080px;
+}
+
+.side-nav{
+  max-height: 450px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.slimScrollDiv {
+  height: auto!important;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+::ng-deep .mat-drawer {
+  overflow-y: auto;
+}
+
+h1.user-app-name {
   margin-left: 8px;
 }
 
-.example-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  flex: 1;
+.mat-sidenav {
+  background: linear-gradient(135deg, #8f75da 0, #727cf5 60%);
+  width: 15em;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
-.example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
+.user-sidenav-container {
+  flex: 1;
+  top: 44px;
+}
+
+.user-is-mobile .user-sidenav-container {
   flex: 1 0 auto;
+}
+
+.mat-drawer {
+  top: 4px;
+}
+
+.mat-expansion-panel {
+  background: rgba(0, 0, 0, 0);
+  margin: 0;
+  padding-bottom:0;
+}
+
+::ng-deep .mat-expansion-panel-body{
+  padding: 0 0 0 1.5em !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .mat-expansion-indicator::after {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+::ng-deep .mat-expansion-indicator {
+  padding-bottom: 0.5em;
+}
+.mat-expansion-panel-header-title:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.sub-title-list{
+  list-style: none;
+}
+
+.sub-title-item{
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0 0 1em 1em;
+  cursor: pointer;
+  outline: none;
+}
+
+.sub-title-item:hover{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mat-icon-button{
+  outline-color: transparent;
+}
+
+.sub-nav{
+  position:fixed;
+  background:linear-gradient(135deg, #727cf5 0, #8f75da 60%) ;
+  left: 44px;
+  opacity: 1;
+  z-index: 9999;
+}
+
+.large-sub-nav{
+  left: 240px;
+}
+
+
+.peddles{
+  display:none;
+}
+
+.outlet{
+  position: relative;
+  top:60px;
+  overflow:hidden;
+}
+
+.mat-tab-link{
+  text-decoration: none;
+  color:white;
+}
+
+
+@media only screen and (max-width: 419px) {
+  .mat-tab-nav-bar {
+    max-width: 65%;
+    left: 8%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  // IE 10+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  .mat-tab-nav-bar::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+    overflow-y: hidden;
+    -ms-overflow-style: none; 
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+  }
+
+  ::-webkit-scrollbar { 
+    display: none; 
+  }
+
+  .content-area {
+    padding: 0 0 0 0.5em;
+  }
+
+  .peddles{
+    position: relative;
+    display: block;
+    top:-35px;
+  }
+
+  .my-peddle{
+    position: absolute;
+    background: transparent;
+    border-top: none;
+    border-bottom: none;
+    outline: none;
+  }
+
+  .peddle-left-button{
+    position: absolute;
+    top: 20%;
+    border-left: none;
+  }
+
+  .peddle-right-button{
+    position: absolute;
+    right: 20%;
+    top: 20%;
+    border-right: none;
+
+  }
+}
+#myFooter {
+  position: relative;
+  margin: 0 auto;
+  background-color: #182c39;
+  color: white;
+  padding-top: 35px;
+  min-width: 500px;
+}
+
+#myFooter .footer-copyright {
+  background-color: #10222e;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .footer-copyright p {
+  margin: 10px;
+  color: #ccc;
 }

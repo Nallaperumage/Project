@@ -1,4 +1,49 @@
+.collect-info{
+    overflow: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+    position: relative;
+	// height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 70px 50px 0 50px;
+}
+.step-scroll{
+    min-width: 600px;
+}
+.map-step-form{
+    width: 100%;
+}
 agm-map{
-    max-width: 300px;
+    min-width: 400px;
     height: 300px;
 }
+.success-status{
+	position: relative;
+	background: rgba(44, 252, 3, 0.3);
+	color: blue;
+	padding: 10px 0 10px 0;
+	bottom: 10px;
+	border: 2px solid;
+	border-color: rgb(7, 255, 7);
+	border-radius: 7px;
+}
+
+.my-button{
+	background: rgba(0, 0, 0, 0.6);
+	color: aqua;
+	max-height: 50px;
+}
+
+.fail-status{
+	position: relative;
+	background: rgba(255, 0, 0,0.3);
+	color: red;
+	padding: 10px 0 10px 0;
+	bottom: 10px;
+	border: 2px solid;
+	border-color: rgb(250, 0, 0);
+	border-radius: 7px;
+}
+
+

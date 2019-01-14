@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 
@@ -17,13 +17,12 @@ import { AuthenticationService, UserDetails } from './Services/authentication.se
 export class AppComponent implements OnInit, OnDestroy, DoCheck {
 
   isCollapsed = true;
-  aboutCollapsed = true;
   userCollapsed = true;
   wasClicked = false;
-  aboutClicked = false;
   userClicked = false;
   details: UserDetails;
   userLogged = false;
+  showFooter = false;
   errorMsg;
   userName;
 
@@ -34,7 +33,9 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
 
   private _mobileQueryListener: () => void;
 
-  constructor( public auth: AuthenticationService, private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) {
+  constructor( public auth: AuthenticationService, private router: Router,
+    private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, public route: ActivatedRoute ) {
+
     this.mobileQuery = media.matchMedia('(max-width: 767px)');
     this.largeQuery = media.matchMedia('(max-width: 767px)');
     this.transition = media.matchMedia('(max-width: 767px)');
@@ -42,6 +43,9 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.largeQuery.addListener(this._mobileQueryListener);
     this.transition.addListener(this._mobileQueryListener);
+
+    
+
   }
 
   ngOnInit() {
@@ -81,11 +85,6 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
     this.wasClicked = !this.wasClicked;
   }
 
-  toggleAbout() {
-    this.aboutCollapsed = !this.aboutCollapsed;
-    this.aboutClicked = !this.aboutClicked;
-  }
-
   toggleUser() {
     this.userCollapsed = !this.userCollapsed;
     this.userClicked = !this.userClicked;
@@ -93,11 +92,7 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
 
   getUserName(){
     if(this.auth.isLoggedIn()){
-      this.auth.profile().subscribe(user => {
-        this.details = user;
-      }, (err) => {
-        console.error(err);
-      });
+      this.details = this.auth.getUserDetails()
     }
   }
 
@@ -114,10 +109,10 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
 
   user() {
     this.toggleUser();
-    this.router.navigate(['user']);
+    this.router.navigate(['user/personal-data']);
   }
 
-  tanh() {
+  profilePic() {
     setTimeout(() => {
       this.router.navigate(['/']);
       this.toggleUser();
@@ -130,7 +125,7 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
       if (this.mobileQuery.matches) {
         this.toggleMenu();
       }
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
   }
 
   service() {
@@ -169,31 +164,13 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
       this.router.navigate(['forum']); 
   }
 
-  action() {
-    setTimeout(() => {
-      this.router.navigate(['about']);
-      if (this.mobileQuery.matches) {
-        this.toggleMenu();
-      }
-    }, 100);
-  }
-
-  action2() {
-    setTimeout(() => {
-      this.router.navigate(['about']);
-      if (this.mobileQuery.matches) {
-        this.toggleMenu();
-      }
-    }, 100);
-  }
-
-  action3() {
-    setTimeout(() => {
-      this.router.navigate(['about']);
-      if (this.mobileQuery.matches) {
-        this.toggleMenu();
-      }
-    }, 100);
+  about() {
+    this.userCollapsed = true;
+    this.userClicked = false;
+    if (this.mobileQuery.matches) {
+      this.toggleMenu();
+    }
+    this.router.navigate(['about']); 
   }
 
   logOut() {
@@ -212,5 +189,10 @@ export class AppComponent implements OnInit, OnDestroy, DoCheck {
   signUp(){
     this.toggleUser();
     this.router.navigate(['signUp']);
+  }
+
+  register(){
+    this.toggleUser();
+    this.router.navigate(['register']);
   }
 }

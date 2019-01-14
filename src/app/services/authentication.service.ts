@@ -81,7 +81,7 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post'|'get', type: 'login'|'signUp'|'user/personal-data', user?: LoginUser|RegisterUser): Observable<any> {
+  private request(method: 'post'|'get', type: 'login'|'signUp'|'user/personal-data'|'user/activity', user?: LoginUser|RegisterUser): Observable<any> {
     let base;
   
     if (method === 'post') {
@@ -115,9 +115,21 @@ export class AuthenticationService {
     return Observable.throw( error.error.message || "server Error" );
   }
   
-  public profile(): Observable<any> {
+  public profileRead(): Observable<any> {
     return this.request('get', 'user/personal-data');
   }
+  public activityRead(): Observable<any> {
+    return this.request('get', 'user/activity');
+  }
+
+  public profileSet(data: any): Observable<any> {
+    var param = {
+      data: data,
+      email: this.getUserDetails().email
+    }
+    return this.http.post('user/personal-data',param);
+  }
+
 
   public processPayment(token: any, amount: number) {
     
@@ -134,21 +146,50 @@ export class AuthenticationService {
     .subscribe(data => {
       console.log(data);
     });
-    // 
-    // return this.db.list(`/payments/${this.userId}`).push(payment)
   }
+
+  public processPayment2(token: any, service: String): Observable<any> {
+    if(this.isLoggedIn()){
+      const user = this.getUserDetails();
+      const email = user.email;
+      const payment = { token, service, email }
+      return this.http.post('service/payment',payment);
+    }
+    const payment = { token, service }
+    return this.http.post('service/payment',payment);
+  }
+
   public chartData(test: String, location:any){
     const params = {test, location};
 
-    return this.http.post('user/chart-editor', params).subscribe(response => {
+    return this.http.post('user/chart-editor', params);
+  }
+
+  public forgotEmail(email){
+    var data = {
+      email: email
+    }
+    return this.http.post('/login/forgot-password',data).subscribe( response => {
       console.log(response);
+    }, (err)=>{
+
     })
   }
 
-  public forgotEmail(){
-    return this.http.get('/login/forgot-password').subscribe(response=>{
-      console.log(response);
-    })
+  public floodInsert(token: any, polygon:any){
+
+    const params = {token, polygon};
+
+    return this.http.post('user/map-editor', params);
   }
+
+  public floodCheck(): Observable<any>{
+    return this.http.get('user/map-editor/getCheck')
+  }
+
+  public dataCheck(): Observable<any>{
+    return this.http.get('service/dataCheck');
+  }
+
 
 }

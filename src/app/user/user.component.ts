@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params, UrlSegment } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthenticationService, UserDetails } from '../Services/authentication.service';
 
@@ -15,44 +16,45 @@ export class UserComponent implements OnInit {
   isClicked = false;
   isAccountClicked = false;
   isEditorClicked = false;
-  isFormsClicked = false;
+  isFormClicked = false;
   isChartsClicked = false;
   isMapsClicked = false;
   isTablesClicked = false;
   isDocumentsClicked = false;
+  sideNav = {
+    raw:''
+  }
 
   mobileQuery: MediaQueryList;
   largeQuery: MediaQueryList;
 
-  // fillerNav = Array(10).fill(0).map((_, i) => `Nav Item ${i + 1}`);
-
-  // fillerContent = Array(10).fill(0).map(() =>
-  //     `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-  //      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-  //      laboris nisi ut aliquip ex ea commodo consequat.`);
-
   private _mobileQueryListener: () => void;
 
   navLinks1 = [
-      { path: 'personal-data', label: 'Personal Data' },
-      { path: 'credit-cards', label: 'Credit Cards' },
-      { path: 'activities', label: 'Activilies' }
+    { path: 'personal-data', label: 'Personal Data' },
+    { path: 'credit-cards', label: 'Credit Cards' },
+    { path: 'activities', label: 'Activilies' }
   ];
 
   navLinks2 = [
-    { path: 'text-editor', label: 'Text Editor' },
+    { path: 'text-editor', label: 'Text Editor' }
   ];
 
   navLinks3 = [
-    { path: 'map-editor', label: 'Map Editor' },
+    { path: 'map-editor', label: 'Insert on Map' }
   ];
 
   navLinks4 = [
-    { path: 'chart-editor', label: 'Chart Editor' },
+    { path: 'chart-editor', label: 'Chart Editor' }
+  ];
+  navLinks5 = [
+    { path: 'sieve-analysis-test', label: 'Sieve Analysis test' },
+    { path: 'plastic-limit-test', label: 'Plastic Limit test' },
+    { path: 'liquid-limit-test', label: 'Liquid Limit test' },
   ];
 
   navLinks6 = [
-    { path: 'tables', label: 'Tables' },
+    { path: 'tables', label: 'Tables' }
   ];
   
   navLinks7 = [
@@ -60,18 +62,72 @@ export class UserComponent implements OnInit {
   ];
 
   
-  constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher ) { 
+  constructor( private auth: AuthenticationService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    public route: ActivatedRoute, public router: Router ) { 
     this.mobileQuery = media.matchMedia('(max-width: 767px)');
     this.largeQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.largeQuery.addListener(this._mobileQueryListener);
     // this.sidenavContainer.scrollable.elementScrolled().subscribe(() => /* react to scrolling */);
+
+    if(this.route.firstChild){
+      this.route.firstChild.url.subscribe( UrlSegment => {
+        if(UrlSegment[0].path=='personal-data' || UrlSegment[0].path=='credit-cards'|| UrlSegment[0].path=='activities'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteAccount();
+          }
+          return this.routeAccount();
+        }
+        if(UrlSegment[0].path=='text-editor'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteEditor();
+          }
+          return this.routeEditor();
+        }
+        if(UrlSegment[0].path=='sieve-analysis-test'|| UrlSegment[0].path=='plastic-limit-test'|| UrlSegment[0].path=='liquid-limit-test'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteForm();
+          }
+          return this.routeForm();
+        }
+        if(UrlSegment[0].path=='chart-editor'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteCharts();
+          }
+          return this.routeCharts();
+        }
+        if(UrlSegment[0].path=='map-editor'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteMaps();
+          }
+          return this.routeMaps();
+        }
+        if(UrlSegment[0].path=='tables'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteTables();
+          }
+          return this.routeTables();
+        }
+        if(UrlSegment[0].path=='documents'){
+          if(this.mobileQuery){
+            this.isClicked = true;
+            return this.mobileRouteDocuments();
+          }
+          return this.routeDocuments();
+        }
+      })
+    }
   }
 
 
   ngOnInit() {
-
   }
 
   hideArrow(){
@@ -79,151 +135,61 @@ export class UserComponent implements OnInit {
   }
   mobileRouteAccount(){
     this.isClicked = !this.isClicked;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
-    this.isAccountClicked = !this.isAccountClicked;
+    this.sideNav.raw='Account';
   }
   mobileRouteEditor(){
     this.isClicked = !this.isClicked;
-    this.isAccountClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
-    this.isEditorClicked = !this.isEditorClicked;
+    this.sideNav.raw='Editor';
   }
-  mobileRouteforms(){
+  mobileRouteForm(){
     this.isClicked = !this.isClicked;
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = !this.isFormsClicked;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Form';
   }
   mobileRouteCharts(){
     this.isClicked = !this.isClicked;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isAccountClicked = false;
-    this.isChartsClicked = !this.isChartsClicked;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Charts';
   }
   mobileRouteMaps(){
     this.isClicked = !this.isClicked;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isAccountClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = !this.isMapsClicked;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Maps';
   }
   mobileRouteTables(){
     this.isClicked = !this.isClicked;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isAccountClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = !this.isTablesClicked;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Tables';
   }
   mobileRouteDocuments(){
     this.isClicked = !this.isClicked;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isAccountClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = !this.isDocumentsClicked;
+    this.sideNav.raw='Documents';
   }
-
-
 
   routeAccount(){
-    this.isAccountClicked = true;
-    this.isFormsClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Account';
   }
   routeEditor(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = true;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Editor';
 
   }
-  routeforms(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = true;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+  routeForm(){
+    this.sideNav.raw='Form';
   }
   routeCharts(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = true;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Charts';
   }
   routeMaps(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = true;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Maps';
   }
   routeTables(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = true;
-    this.isDocumentsClicked = false;
+    this.sideNav.raw='Tables';
   }
   routeDocuments(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
-    this.isFormsClicked = false;
-    this.isChartsClicked = false;
-    this.isMapsClicked = false;
-    this.isTablesClicked = false;
-    this.isDocumentsClicked = true;
+    this.sideNav.raw='Documents';
   }
 
   leftClick(){
-    this.isAccountClicked = false;
-    this.isEditorClicked = false;
     document.getElementById('my-mat-nav').scrollLeft -= 200;
   }
 
   rightClick(){
-    let y = document.getElementById('my-mat-nav').scrollLeft +=200;
-
+    document.getElementById('my-mat-nav').scrollLeft +=200;
   }
 }

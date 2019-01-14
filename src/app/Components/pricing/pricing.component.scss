@@ -1,10 +1,114 @@
-.pricing-list{
+.pricing{
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    // min-width: 500px;
+    min-height: 720px;
+    margin: 0 auto;
+    background: url('../../../assets/bg_black.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.price-cards{
+    position:relative;
     padding-top: 60px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 30px;
+    
 }
 
-.col-md-4{
-    padding: 0.5em;
+.align-header{
+    position: relative;
+    text-align: left;
+}
+
+
+
+.pricing-card {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 50%;
+    // min-width:500px;
+}
+  
+.example-header-image {
+    background-image: url('../../../assets/laboratory.jpg');
+    background-size: cover;
+}
+
+.images-div{
+    position: relative;
+}
+
+.images-div ul{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    list-style: none;
+    margin: 0 -10px;
+}
+
+.images-div ul li{
+    position: relative;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
+    border: 0.1px solid;
+}
+
+.change-image{
+    position: relative;
+    height: 99%;
+    width: 98%;
+}
+
+.mat-card-image:first-child {
+    margin-top: auto;
+}
+
+.search-form {
+    margin: 0 auto;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.search-full-width {
+    width: 100%;
+}
+
+.material-card {
+    position: relative;
+    margin: 0 auto;
+    // min-width: 500px;
+    max-width: 50%;
+    background: rgba(255,255,255,0.8);
+}
+
+.select-pricing{
+    position: relative;
+    text-align: center;
+}
+
+#myFooter {
+    position: relative;
+    margin: 0 auto;
+    background-color: #182c39;
+    color: white;
+    padding-top: 35px;
+    // min-width: 500px;
+}
+  
+#myFooter .footer-copyright {
+    background-color: #10222e;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+  
+#myFooter .footer-copyright p {
+    margin: 10px;
+    color: #ccc;
 }

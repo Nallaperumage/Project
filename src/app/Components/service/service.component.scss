@@ -1,3 +1,157 @@
+.service{
+	position: relative;
+	min-height: 700px;
+	// min-width: 500px;
+	margin: 0 auto;
+	height: 100%; 
+  	background: url("../../../assets/blue_black.jpg");
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
+}
+.service-interior{
+	position: relative;
+	// height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 70px 50px 0 50px;
+}
+
 .collect-info{
     padding: 4em;
 }
+
+#myFooter {
+	position: relative;
+	margin: 0 auto;
+	background-color: #182c39;
+	color: white;
+	padding-top: 35px;
+	// min-width: 500px;
+}
+  
+#myFooter .footer-copyright {
+	background-color: #10222e;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	text-align: center;
+}
+  
+#myFooter .footer-copyright p {
+	margin: 10px;
+	color: #ccc;
+}
+
+.map-step-form{
+	width: 100%;
+	display: none;
+}
+agm-map{
+    min-width: 400px;
+    height: 300px;
+}
+
+.instructions{
+	position: relative;
+	background: rgba(44, 252, 3, 0.3);
+	color: rgb(255, 0, 0);
+	padding: 10px 0 10px 0;
+	bottom: 10px;
+	border: 2px solid;
+	border-color: rgb(7, 255, 7);
+	border-radius: 7px;
+}
+
+.success-status{
+	position: relative;
+	background: rgba(44, 252, 3, 0.3);
+	color: blue;
+	padding: 10px 0 10px 0;
+	bottom: 10px;
+	border: 2px solid;
+	border-color: rgb(7, 255, 7);
+	border-radius: 7px;
+}
+
+.fail-status{
+	position: relative;
+	background: rgba(255, 0, 0,0.3);
+	color: red;
+	padding: 10px 0 10px 0;
+	bottom: 10px;
+	border: 2px solid;
+	border-color: rgb(250, 0, 0);
+	border-radius: 7px;
+}
+
+.my-button-div{
+	padding: 30px 0 30px 0;
+}
+
+.my-button{
+	background: rgba(0, 0, 0, 0.6);
+	color: aqua;
+	max-height: 50px;
+}
+
+.my-button-list{
+	position: relative;
+}
+
+.my-button-list ul{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    list-style: none;
+    margin: 0 -10px;
+}
+
+.my-button-list ul li{
+	position: relative;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
+}
+
+.button-attr{
+	top: -17px;
+    position: relative;
+	font-size: 5px;
+	color: aliceblue !important;
+}
+
+.button-attr:hover{
+	display: none;
+}
+
+@media screen and (max-width: 630px) {
+	.service-interior{
+		padding: 70px 20px 0 20px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.service-interior{
+		padding: 70px 5px 20px 5px;
+	}
+
+	.collect-info{
+		padding: 1em;
+	}
+
+	::ng-deep .mat-vertical-content {
+		padding: 10px 5px 10px 5px !important;
+	}
+
+	::ng-deep .mat-vertical-content-container {
+		margin-left: 13px !important;
+	}
+
+	::ng-deep .mat-vertical-stepper-header {
+		padding: 24px 24px 24px 2px !important;
+	}
+}
+
+

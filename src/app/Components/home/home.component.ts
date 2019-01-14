@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef, OnInit, ViewChild, DoCheck, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {} from '@types/googlemaps';
 
 
@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit, DoCheck, OnDestroy {
   // @ViewChild('map') gmapElement: any;
   // map: google.maps.Map;
   
-  constructor( changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router ) {
+  constructor( changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router,
+    public route: ActivatedRoute ) {
       this.mobileQuery = media.matchMedia('(max-width: 991px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,23 +35,23 @@ export class HomeComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.router.isActive('/home',true)) {
+    if (this.route.component == 'home') {
       window.onscroll = function() { 
         var middle = document.getElementById('middle-column');
-        // var boundingMiddle = middle.getBoundingClientRect();
+        var boundingMiddle = middle.getBoundingClientRect();
 
         let y = window.pageYOffset;
         let x = window.screen.width;
  
         if(y>50){
           document.getElementById("caro-ctrl").classList.add("caro-remover");
-          // document.getElementById("left-column").classList.add("move-right");
-          // document.getElementById("right-column").classList.add("move-left");
+          document.getElementById("left-column").classList.add("move-right");
+          document.getElementById("right-column").classList.add("move-left");
         }
         else{
           document.getElementById("caro-ctrl").classList.remove("caro-remover");
-          // document.getElementById("left-column").classList.remove("move-right");
-          // document.getElementById("right-column").classList.remove("move-left");
+          document.getElementById("left-column").classList.remove("move-right");
+          document.getElementById("right-column").classList.remove("move-left");
         }
       }
 

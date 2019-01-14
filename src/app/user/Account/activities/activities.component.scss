@@ -1,0 +1,14 @@
+.materialcard{
+    position:relative;
+    padding:20px;
+    display: -webkit-box;
+    width:95%;
+    max-width:700px;
+    margin: 2%;
+}
+
+@media screen and (max-width: 600px) {
+    .materialcard{
+        display: block;
+    }
+}

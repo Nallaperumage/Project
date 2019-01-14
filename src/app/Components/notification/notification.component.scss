@@ -1,3 +1,14 @@
+.matCard{
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 500px;
+}
+
+.matContent{
+  position:relative;
+}
+
 ul{
     margin: 0px;
     padding: 0px;
@@ -20,3 +31,24 @@ ul{
   top: 60px;
   padding-top: 50px;
 }
+
+#myFooter {
+	position: relative;
+	margin: 0 auto;
+	background-color: #182c39;
+	color: white;
+	padding-top: 35px;
+	// min-width: 500px;
+  }
+  
+  #myFooter .footer-copyright {
+	background-color: #10222e;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	text-align: center;
+  }
+  
+  #myFooter .footer-copyright p {
+	margin: 10px;
+	color: #ccc;
+  }

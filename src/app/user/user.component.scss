@@ -1,5 +1,15 @@
 .user-body {
-  padding-top: 0px;
+  position: relative;
+  padding:0 ;
+  width: 100%;
+}
+.user-container{
+  position: relative;
+}
+
+.content-area {
+  padding: 0 0 0 1em;
+  min-height: 700px;
 }
 
 .user-is-mobile {
@@ -21,50 +31,12 @@
   margin: 0 10px 0 0;
 }
 
-@media only screen and (max-width: 767px) {
-  .user-toolbar {
-    background: #8f75da;
-    color: rgba(255, 255, 255, 0.75);
-    border-radius: none;
-    display: grid;
-    position: fixed;
-    top: 48px;
-    max-height: 450px;
-    bottom: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    z-index: 2;
-    font-size: 15px;
-    left: -22px;
-    height: 90%;
-    transition: 0.25s;
-  }
-
-  .btnIco{
-    padding: 1.5em .5em 1.5em 2em;
-  }
-
-  .fa-chevron-circle-right:before{
-    color: rgba(0, 0, 0, 0.5);;
-  }
-
-  .hide-arrow {
-    transform: translateX(-200%);
-    transition: 0.25s;
-  }  
-  .content-area.padding-left {
-    left: 3em;
-  }
-}
 
 .mat-expansion-panel:not([class*=mat-elevation-z]){
   box-shadow: none;
 }
 
-.content-area {
-  padding: 0 0 0 1em;
-  height: 1080px;
-}
+
 
 .side-nav{
   max-height: 450px;
@@ -97,7 +69,8 @@ h1.user-app-name {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
-  top: 44px;
+  padding-top: 48px;
+  position: relative;
 }
 
 .user-is-mobile .user-sidenav-container {
@@ -161,6 +134,7 @@ h1.user-app-name {
   left: 44px;
   opacity: 1;
   z-index: 9999;
+  width: 100%;
 }
 .user-image{
   width:100%;
@@ -179,69 +153,111 @@ h1.user-app-name {
 
 .outlet{
   position: relative;
-  top:60px;
-  overflow:hidden;
+  padding-top:60px;
+  // min-width: 500px;
+  // overflow:hidden;
 }
 
 .mat-tab-link{
   text-decoration: none;
   color:white;
 }
+@media only screen and (max-width: 767px) {
+  .user-toolbar {
+    background: #8f75da;
+    color: rgba(255, 255, 255, 0.75);
+    border-radius: none;
+    display: grid;
+    position: fixed;
+    top: 48px;
+    max-height: 450px;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 2;
+    font-size: 15px;
+    left: -22px;
+    height: 90%;
+    transition: 0.25s;
+  }
+
+  .btnIco{
+    padding: 1.5em .5em 1.5em 2em;
+  }
+
+  .fa-chevron-circle-right:before{
+    color: rgba(0, 0, 0, 0.5);;
+  }
+
+  .hide-arrow {
+    transform: translateX(-200%);
+    transition: 0.25s;
+  }  
+  .content-area {
+    padding: 0 0 0 3.2em;
+  }
+  .user-sidenav-container {
+    top: -4px;
+  }
+  // .content-area.padding-left {
+  //   // padding-left: 3em;
+  // }
+}
 
 
 @media only screen and (max-width: 419px) {
-.mat-tab-nav-bar {
-  max-width: 65%;
-  left: 8%;
-  white-space: nowrap;
-  overflow: hidden;
-  overflow-y: hidden;
-  -ms-overflow-style: none;  // IE 10+
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-.mat-tab-nav-bar::-webkit-scrollbar {
-  display: none;
-  overflow: hidden;
-  overflow-y: hidden;
-  -ms-overflow-style: none; 
-  width: 0px;  /* remove scrollbar space */
-  background: transparent;  /* optional: just make scrollbar invisible */
-}
+  .mat-tab-nav-bar {
+    max-width: 65%;
+    left: 8%;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: hidden;
+    -ms-overflow-style: none;  // IE 10+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  .mat-tab-nav-bar::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+    overflow-y: hidden;
+    -ms-overflow-style: none; 
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+  }
 
-::-webkit-scrollbar { 
-  display: none; 
-}
+  ::-webkit-scrollbar { 
+    display: none; 
+  }
 
-.content-area {
-  padding: 0 0 0 0.5em;
-}
+  .content-area {
+    padding: 0 0 0 4em;
+  }
 
-.peddles{
-  position: relative;
-  display: block;
-  top:-35px;
-}
+  .peddles{
+    position: relative;
+    display: block;
+    top:-35px;
+  }
 
-.my-peddle{
-  position: absolute;
-  background: transparent;
-  border-top: none;
-  border-bottom: none;
-  outline: none;
-}
+  .my-peddle{
+    position: absolute;
+    background: transparent;
+    border-top: none;
+    border-bottom: none;
+    outline: none;
+  }
 
-.peddle-left-button{
-  position: absolute;
-  top: 20%;
-  border-left: none;
-}
+  .peddle-left-button{
+    position: absolute;
+    top: 20%;
+    border-left: none;
+  }
 
-.peddle-right-button{
-  position: absolute;
-  right: 20%;
-  top: 20%;
-  border-right: none;
+  .peddle-right-button{
+    position: absolute;
+    right: 20%;
+    top: 20%;
+    border-right: none;
 
-}
+  }
 }

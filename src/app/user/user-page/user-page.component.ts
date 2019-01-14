@@ -29,11 +29,11 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.profile().subscribe(user => {
-      this.details = user;
-    }, (err) => {
-      console.error(err);
-    });
+    // this.auth.profile().subscribe(user => {
+    //   this.details = user;
+    // }, (err) => {
+    //   console.error(err);
+    // });
     
   }
 

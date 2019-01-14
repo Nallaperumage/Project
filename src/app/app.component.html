@@ -18,7 +18,7 @@
 
 
 
-    <ul class="my-navi" [class.ham-clicked]="wasClicked" [class.about-clicked]="aboutClicked">
+    <ul class="my-navi" [class.ham-clicked]="wasClicked">
       <li class="navi-item logo item-logo" *ngIf="!transition.matches">
         <a class="item-link" routerLink="\">SLGSP</a>
       </li>
@@ -37,11 +37,11 @@
       <li class="navi-item" [class.ham-clicked]="wasClicked">
         <a class="item-link" (click)="forum()">Forum</a>
       </li>
-      <li class="navi-item about" [class.ham-clicked]="wasClicked">
-        <a class="about item-link" (click)="toggleAbout()">
-          <span class="">About</span>
-        </a>
+      <li class="navi-item" [class.ham-clicked]="wasClicked">
+        <a class="item-link" (click)="about()">About</a>
       </li>
+      <br/>
+      <br/>
       <li class="navi-item" [class.user-clicked]="userClicked">
         <a class="user-info item-link list-user" [class.user-clicked]="userClicked">
           <span class="" [class.user-clicked]="userClicked">
@@ -61,7 +61,7 @@
       <div class="user-tool-area" [class.user-clicked]="userClicked">
         <ul *ngIf="userLogged" class="site-navi" [class.user-clicked]="userClicked">
           <li class="site-item" [class.user-clicked]="userClicked">
-            <a (click)="tanh()">
+            <a (click)="profilePic()">
               <i class="fa fa-user-circle profile-pic"></i>
             </a>
             <a class="user-name">
@@ -111,7 +111,7 @@
                 </a>
             </li>
             <li class="site-item" [class.user-clicked]="userClicked">
-                <a (click)="signUp()">
+                <a (click)="register()">
                     <span>
                       <i class="fas fa-user-edit site-item-icon"></i>
                     </span>
@@ -123,14 +123,6 @@
 
     </aside>
 
-  </div>
-</div>
-
-<div>
-  <div class="about-div" [class.about-clicked]="aboutClicked" *ngIf="aboutClicked">
-    <a class="" (click)="login()">Action</a>
-    <a class="" (click)="login()">Another action</a>
-    <a class="" (click)="login()">Something else here</a>
   </div>
 </div>
 

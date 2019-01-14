@@ -1,4 +1,3 @@
-
 .modal-dialog {
   top: 54px;
   z-index: 9999;
@@ -28,5 +27,114 @@
 
 
 .typing-error{
-  color:red;
+  position: relative;
+  background: rgba(255, 0, 0,0.3);
+  color: red;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  border: 2px solid;
+  border-color: rgb(250, 0, 0);
+  border-radius: 7px;
+}
+.user-error{
+  position: relative;
+  text-align: center;
+  background: rgba(255, 0, 0,0.3);
+  color: red;
+  padding: 10px 0 10px 0;
+  border: 2px solid;
+  border-color: rgb(250, 0, 0);
+  border-radius: 7px;
+}
+.pass-error{
+  position: relative;
+  text-align: center;
+  background: rgba(255, 0, 0,0.3);
+  color: red;
+  padding: 10px 0 10px 0;
+  border: 2px solid;
+  border-color: rgb(250, 0, 0);
+  border-radius: 7px;
+}
+.server-error{
+  position: relative;
+  text-align: center;
+  background: rgba(255, 0, 0,0.3);
+  color: red;
+  padding: 10px 0 10px 0;
+  border: 2px solid;
+  border-color: rgb(250, 0, 0);
+  border-radius: 7px;
+}
+
+.recover-form {
+  margin: 0 auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.recover-full-width {
+  width: 100%;
+}
+
+.recover-card {
+  max-width: 400px;
+}
+
+.removeModel{
+  display: none;
+}
+
+.forgot{
+  position: relative;
+  padding-top:90px;
+  padding-bottom: 90px;
+  text-align: center;
+}
+
+.material-card{
+  margin: 0 auto;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  background: rgba(211,211,211,0.7);
+}
+
+.tada{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.login-background{
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  // min-width: 500px;
+  min-height: 700px;
+  margin: 0 auto;
+  background: url('../../../assets/purple_black.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#myFooter {
+  position: relative;
+  margin: 0 auto;
+  background-color: #182c39;
+  color: white;
+  padding-top: 35px;
+  // min-width: 500px;
+}
+
+#myFooter .footer-copyright {
+  background-color: #10222e;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+
+#myFooter .footer-copyright p {
+  margin: 10px;
+  color: #ccc;
 }

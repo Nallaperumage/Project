@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -12,7 +13,7 @@ export class NotificationComponent implements OnInit {
   name="";
 
 
-  constructor() { }
+  constructor(public router : Router) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,10 @@ export class NotificationComponent implements OnInit {
   addItem(){
     this.tab = this.tab+1;
     this.msg ="clicked : "+ this.tab;
+  }
+
+  routeLogin(){
+    this.router.navigate(['login']);
   }
 
 }

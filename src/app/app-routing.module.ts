@@ -3,6 +3,7 @@ import { Routes, RouterModule} from '@angular/router';
 
 import { AuthGuardService } from './Services/auth-guard.service';
 
+import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
 import { AboutComponent } from './Components/about/about.component';
 import { ServiceComponent } from './Components/service/service.component';
@@ -19,77 +20,109 @@ import { UserComponent } from './user/user.component';
   import { ChartEditorComponent } from './user/Charts/chart-editor/chart-editor.component';
   import { TablesComponent } from './user/Tables/tables/tables.component';
   import { DocumentsComponent } from './user/Documents/documents/documents.component';
+  import { SieveComponent } from './user/Forms/sieve/sieve.component';
+  import { PlasticComponent } from './user/Forms/plastic/plastic.component';
+  import { LiquidComponent } from './user/Forms/liquid/liquid.component';
 import { LoginComponent } from './Components/login/login.component';
 import { SignupComponent } from './Components/signup/signup.component';
+import { RegisterComponent } from './Components/register/register.component';
 import { EditorComponent } from './Components/editor/editor.component';
 import { NotificationComponent } from './Components/notification/notification.component';
+
   
 
 
 const routes: Routes = [
   {
- 
+
     path: 'login',
     component: LoginComponent
   
   },
+  {
+    path: 'login/:token',
+    component: LoginComponent
+
+  },
 
   {
-  
     path: 'signUp',
     component: SignupComponent
-     
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
 
   {
     path: 'user',
     component: UserComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'profile',
         component: UserPageComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'personal-data',
         component: PersonalDataComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'credit-cards',
         component: CreditCardsComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'activities',
         component: ActivitiesComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'text-editor',
         component: TextEditorComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'map-editor',
         component: MapEditorComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'map-editor/:token',
+        component: MapEditorComponent
+    
       },
       {
         path: 'chart-editor',
         component: ChartEditorComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'tables',
         component: TablesComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
       },
       {
         path: 'documents',
         component: DocumentsComponent,
-        // canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'sieve-analysis-test',
+        component: SieveComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'plastic-limit-test',
+        component: PlasticComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'liquid-limit-test',
+        component: LiquidComponent,
+        canActivate: [AuthGuardService]
       }
     ]
   },
@@ -106,6 +139,12 @@ const routes: Routes = [
   {
     path: 'service',
     component: ServiceComponent
+  },
+
+  {
+    path: 'service/:token',
+    component: ServiceComponent
+
   },
 
   {
@@ -137,6 +176,8 @@ const routes: Routes = [
     path: 'notifications',
     component: NotificationComponent
   },
+
+  
 
 ];
 

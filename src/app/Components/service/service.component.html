@@ -1,37 +1,334 @@
-<div class="collect-info">
-    <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button>
-
-    <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+<div class="service">
+  <div class="service-interior">
+    <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+    </button> -->
+    <mat-horizontal-stepper *ngIf="!mobileQuery.matches" aria-orientation="vertical" class="step-scroll" [linear]="isLinear"
+      #stepper>
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Fill out your name</ng-template>
+          <ng-template matStepLabel>Select Service</ng-template>
+
           <mat-form-field>
-            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            <mat-select class="scroll-decorator" name="role" placeholder="Select Service" formControlName="firstCtrl">
+              <mat-option>Clear</mat-option>
+              <mat-option value="flood">Flood Area Check</mat-option>
+              <mat-option value="landslide">Landslide Area Check</mat-option>
+              <mat-option value="stability">Ground Stability Check</mat-option>
+              <mat-option value="waterTable">Water table Check</mat-option>
+              <mat-option value="WaterConstituent">Water Constituent Check</mat-option>
+              <mat-option value="mapping">Geological Mapping Details</mat-option>
+            </mat-select>
           </mat-form-field>
+
           <div>
-            <button mat-button matStepperNext>Next</button>
+            <button class="my-button" mat-button matStepperNext (click)="submitService()">Next</button>
           </div>
+
         </form>
       </mat-step>
+
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <input matInput placeholder="Address" formControlName="secondCtrl" required>
+          <ng-template matStepLabel>Plot Location</ng-template>
+          <hr>
+
+          <div id="status">
+            <a>{{message}}</a>
+          </div>
+
+          <agm-map #agm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+            (mapClick)="mapClicked($event)">
+
+            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+            </agm-marker>
+
+            <agm-marker #myMark *ngFor="let n of marks" [latitude]="n.lat" [longitude]="n.lng">
+            </agm-marker>
+
+            <agm-polygon [paths]="paths"></agm-polygon>
+
+          </agm-map>
+
+          <div class="my-button-list">
+            <ul>
+              <li>
+                <button class="my-button" mat-raised-button (click)="createDummyPolygon()">Create Location Area</button>
+              </li>
+              <li>
+                <button class="my-button" mat-raised-button (click)="resetDummyPolygon()">Remove Selected Area</button>
+              </li>
+              <li>
+                <button *ngIf="showFloodCheckContent" class="my-button" mat-raised-button (click)="dataCheckButton()">Check
+                  Data Availability</button>
+                <button *ngIf="showLandslideCheckContent" class="my-button" mat-raised-button (click)="landslideCheckButton()">Check
+                  Data Availability</button>
+                <button *ngIf="showStabilityCheckContent" class="my-button" mat-raised-button (click)="stabilityCheckButton()">Check
+                  Data Availability</button>
+                <button *ngIf="showWaterTableCheckContent" class="my-button" mat-raised-button (click)="waterTableCheckButton()">Check
+                  Data Availability</button>
+                <button *ngIf="showWaterConstituentCheckContent" class="my-button" mat-raised-button (click)="waterConstituentCheckButton()">Check
+                  Data Availability</button>
+                <button *ngIf="showMappingCheckContent" class="my-button" mat-raised-button (click)="mappingCheckButton()">Check
+                  Data Availability</button>
+              </li>
+            </ul>
+          </div>
+
+          <mat-form-field  class="map-step-form">
+            <input matInput name="location" formControlName="secondCtrl" required>
           </mat-form-field>
+
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
           </div>
+
         </form>
       </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Payment</ng-template>
+          <hr>
+          <div *ngIf="!payment.paid" class="success-status">
+            <a>
+              You have to pay {{amount}}$ to recieve detailed results.<br />
+              Click 'Pay' to continue.
+            </a>
+          </div>
+
+          <div *ngIf="payment.paid" id="payment">
+            <a>
+              Your Payment recieved.<br>
+              email: {{payment.email}} <br>
+              charge: {{payment.charge}} <br>
+              discount: {{payment.discount}} <br>
+              paid: {{payment.paid}} <br>
+              payment: {{payment.payment}} <br>
+              status: {{payment.status}} <br><br><br>
+              Please click "Next" to continue... 
+            </a>
+          </div>
+
+          <mat-form-field class="map-step-form">
+            <input matInput name="Payment" formControlName="thirdCtrl" required>
+          </mat-form-field>
+
+          <div *ngIf="!payment.paid" class="my-button-div">
+            <button class="my-button" mat-raised-button (click)="handlePayment()">Pay</button>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+
+        </form>
+      </mat-step>
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
-        You are now done.
+
+        <div class="my-button-div">
+          <button class="my-button" mat-raised-button (click)="floodDetailButton()">Show Result</button>
+        </div>
+
+        <agm-map #agm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+          (mapClick)="mapClicked($event)">
+
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+          </agm-marker>
+
+          <agm-marker #myMark *ngFor="let n of marks" [latitude]="n.lat" [longitude]="n.lng">
+          </agm-marker>
+
+          <agm-data-layer *ngIf="intresection" [geoJson]="geoJsonObject" (layerClick)="clicked($event)" [style]="styleFunc">
+          </agm-data-layer>
+
+          <agm-polygon [paths]="paths">
+          </agm-polygon>
+
+        </agm-map>
+
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
+
       </mat-step>
     </mat-horizontal-stepper>
+
+    <mat-vertical-stepper *ngIf="mobileQuery.matches" aria-orientation="vertical" class="step-scroll" [linear]="isLinear"
+      #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Fill out location</ng-template>
+
+          <mat-form-field>
+            <mat-select class="scroll-decorator" name="role" placeholder="Select Service" formControlName="firstCtrl">
+              <mat-option>Clear</mat-option>
+              <mat-option value="flood">Flood Area Check</mat-option>
+              <mat-option value="landslide">Landslide Area Check</mat-option>
+              <mat-option value="stability">Ground Stability Check</mat-option>
+              <mat-option value="waterTable">Water table Check</mat-option>
+              <mat-option value="WaterConstituent">Water Constituent Check</mat-option>
+              <mat-option value="mapping">Geological Mapping Details</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div>
+            <button mat-button matStepperNext (click)="submitService()">Next</button>
+          </div>
+
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+          <hr>
+
+          <div id="status">
+            <a>{{message}}</a>
+          </div>
+
+          <agm-map #agm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+            (mapClick)="mapClicked($event)">
+
+            <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+            </agm-marker>
+
+            <agm-marker #myMark *ngFor="let n of marks" [latitude]="n.lat" [longitude]="n.lng">
+            </agm-marker>
+
+            <agm-polygon [paths]="paths"></agm-polygon>
+
+          </agm-map>
+
+          <div class="my-button-list">
+            <ul>
+              <li>
+                <button class="my-button" mat-raised-button matTooltip="Create Location Area" (click)="createDummyPolygon()">
+                  <mat-icon>add_location</mat-icon><br>
+                  <a class="button-attr">Create Location Area</a>
+                </button>
+              </li>
+              <li>
+                <button class="my-button" mat-raised-button matTooltip="Remove Selected Area" (click)="resetDummyPolygon()">
+                  <mat-icon>backspace</mat-icon><br>
+                  <a class="button-attr">Remove Selected Area</a>
+                </button>
+              </li>
+              <li>
+                <button *ngIf="showFloodCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="floodCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+                <button *ngIf="showLandslideCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="landslideCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+                <button *ngIf="showStabilityCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="stabilityCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+                <button *ngIf="showWaterTableCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="waterTableCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+                <button *ngIf="showWaterConstituentCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="waterConstituentCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+                <button *ngIf="showMappingCheckContent" class="my-button" mat-raised-button matTooltip="Check Data Availability"
+                  (click)="mappingCheckButton()">
+                  <mat-icon>search</mat-icon><br>
+                  <a class="button-attr">Check Data Availability</a>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <mat-form-field class="map-step-form">
+            <input matInput name="location" formControlName="secondCtrl" required>
+          </mat-form-field>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Fill out your address</ng-template>
+
+          <mat-form-field class="map-step-form">
+            <input matInput placeholder="payment" formControlName="thirdCtrl" required>
+          </mat-form-field>
+
+          <div class="my-button-div">
+            <button class="my-button" mat-raised-button (click)="handlePayment()">Pay</button>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+
+        <div class="my-button-div">
+          <button class="my-button" mat-raised-button (click)="floodDetailButton()">Flood Details</button>
+        </div>
+        <div class="instructions">
+          <h4></h4>
+          <a>Polygon in black represent the area you selected.</a>
+          <a>Polygon in blue represent the area covered by mapping flood details.</a>
+          <a>Polygons in red represent the areas which will be in danger.</a>
+        </div>
+
+        <agm-map #agm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false"
+          (mapClick)="mapClicked($event)">
+
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
+          </agm-marker>
+
+          <agm-marker #myMark *ngFor="let n of marks" [latitude]="n.lat" [longitude]="n.lng">
+          </agm-marker>
+
+          <agm-data-layer *ngIf="intresection" [geoJson]="geoJsonObject" (layerClick)="clicked($event)" [style]="styleFunc">
+          </agm-data-layer>
+
+          <agm-polygon [paths]="paths">
+          </agm-polygon>
+
+        </agm-map>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
 </div>
+
+<footer id="myFooter">
+  <div class="footer-copyright">
+    <p>© 2018 Copyright</p>
+  </div>
+</footer>

@@ -1,0 +1,33 @@
+.forum{
+    position: relative;
+	padding-top: 60px;
+	min-height: 700px;
+}
+#myFooter {
+    position: relative;
+    margin: 0 auto;
+    background-color: #182c39;
+    color: white;
+    padding-top: 35px;
+    // min-width: 500px;
+  }
+  
+  #myFooter .footer-copyright {
+    background-color: #10222e;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+  }
+  
+  #myFooter .footer-copyright p {
+    margin: 10px;
+    color: #ccc;
+  }
+
+
+  html,body { height:100%; }
+.wrapper { position:relative; width:100%; height:100%}
+
+.box1 { position:fixed; top:0;left:0; width:100%; height:30px; background:red}
+.box2 { position:fixed; top:30px;left:0; width:100%; height:100%; overflow-y:auto; background:gray}
+.box3 { position:fixed; bottom:0;left:0; width:100%; height:30px; background:blue}

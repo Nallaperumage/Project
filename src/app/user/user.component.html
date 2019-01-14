@@ -71,17 +71,20 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="snav.toggle() && mobileRouteForm()">Text
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteForm()">Map
-                    Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteForm()">Chart
-                    Editor</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteForm()">Sieve
+                    Analysis test Form</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteForm()">Plastic
+                    Limit test form</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="snav.toggle() && mobileRouteForm()">Liquid
+                    Limit test form</li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="text-editor" (click)="routeForm()">Text Editor</li>
-                  <li class="sub-title-item" routerLink="map-editor" (click)="routeForm()">Map Editor</li>
-                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeForm()">Chart Editor</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeForm()">Sieve
+                      Analysis test Form</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeForm()">Plastic
+                      Limit test form</li>
+                  <li class="sub-title-item" routerLink="chart-editor" (click)="routeForm()">Liquid
+                      Limit test form</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -120,14 +123,14 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <mat-icon class="panelIco fas fa-map-marked-alt"></mat-icon>
-                    Maps
+                    Insert Data
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <ul class="sub-title-list" *ngIf="mobileQuery.matches">
-                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteMaps()">Maps</li>
+                  <li class="sub-title-item" routerLink="map-editor" (click)="snav.toggle() && mobileRouteMaps()">Insert on Maps</li>
                 </ul>
                 <ul class="sub-title-list" *ngIf="!(mobileQuery)!.matches">
-                  <li class="sub-title-item" routerLink="map-editor" (click)="routeMaps()">Map</li>
+                  <li class="sub-title-item" routerLink="map-editor" (click)="routeMaps()">Insert on Map</li>
                 </ul>
               </mat-expansion-panel>
 
@@ -160,50 +163,50 @@
           </mat-nav-list>
         </mat-sidenav>
         <!-- <img src="../../assets/userpage.jpg" alt=""> -->
-
+        
         <mat-sidenav-content class="content-area" [class.padding-left]="!isClicked">
           <div class="user-image"></div>
-          <!-- <div *ngIf="isPClicked">
-                <app-user-page></app-user-page>
-              </div> -->
-          <div class="sub-nav" [class.large-sub-nav]="!(mobileQuery)!.matches">
-            <nav *ngIf="isAccountClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+       
+          <div class="sub-nav" [ngSwitch]="sideNav?.raw" [class.large-sub-nav]="!(mobileQuery)!.matches">
+            <nav *ngSwitchCase="'Account'" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
               <a mat-tab-link *ngFor="let link of navLinks1" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
-            <nav *ngIf="isEditorClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+            <nav *ngSwitchCase="'Editor'" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
               <a mat-tab-link *ngFor="let link of navLinks2" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
-            <nav *ngIf="isFormClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+            <nav *ngSwitchCase="'Maps'"  id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+                <a mat-tab-link *ngFor="let link of navLinks3" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+                  [active]="rla.isActive">
+                  {{link.label}}</a>
+  
+              </nav>
+            <nav *ngSwitchCase="'Charts'"  id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+                <a mat-tab-link *ngFor="let link of navLinks4" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+                  [active]="rla.isActive">
+                  {{link.label}}</a>
+  
+              </nav>
+            <nav *ngSwitchCase="'Form'" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+              <a mat-tab-link *ngFor="let link of navLinks5" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
-            <nav *ngIf="isChartClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks4" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
-                [active]="rla.isActive">
-                {{link.label}}</a>
-
-            </nav>
-            <nav *ngIf="isMapClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
-              <a mat-tab-link *ngFor="let link of navLinks3" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
-                [active]="rla.isActive">
-                {{link.label}}</a>
-
-            </nav>
-            <nav *ngIf="isTableClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+            
+            
+            <nav *ngSwitchCase="'Tables'"  id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
               <a mat-tab-link *ngFor="let link of navLinks6" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>
 
             </nav>
-            <nav *ngIf="isDocumentClicked" id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
+            <nav *ngSwitchCase="'Documents'"  id="my-mat-nav" class="outer-container" mat-tab-nav-bar>
               <a mat-tab-link *ngFor="let link of navLinks7" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
                 [active]="rla.isActive">
                 {{link.label}}</a>

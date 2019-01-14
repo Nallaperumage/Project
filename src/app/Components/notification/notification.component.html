@@ -15,6 +15,17 @@
   <input type=text [(ngModel)]="name">
   <p>{{name}}</p>
 </div> -->
-<div class="login-fail">
-  <p>You are not Authorized to go this page..... please Login first</p>
+<div class="matContent">
+<mat-card class="matCard">
+  <div class="login-fail">
+    <p>You are not Authorized to go this page..... please Login first</p>
+    <button mat-raised-button color="primary" (click)="routeLogin()">Login</button>
+  </div>
+</mat-card>
 </div>
+
+<footer id="myFooter">
+  <div class="footer-copyright">
+    <p>© 2018 Copyright</p>
+  </div>
+</footer>
